@@ -23,3 +23,6 @@ prisma/dev.db
 
 # secrets
 secret.txt
+
+# typescript
+tsconfig.tsbuildinfo
