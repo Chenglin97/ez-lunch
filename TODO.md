@@ -4,11 +4,12 @@
 - [x] Preferences page: refactor into small reusable components.
 - [x] Preferences page: add Save button with loading/success/error states (local only).
 - [x] Preferences page: add Reset action.
-- [ ] Preferences page: add basic validation for numeric fields (max price, radius) with inline error text.
+- [x] Preferences page: add basic validation for numeric fields (max price, radius) with inline error text.
 
 ## Next (still mostly UI)
-- [ ] Extract shared header/nav component used across pages.
-- [ ] Add a simple settings/dashboard page (links to Preferences, Subscription, etc.).
+- [x] Extract shared header/nav component used across pages.
+- [x] Add a simple settings/dashboard page (links to Preferences, Subscription, etc.).
+- [ ] Add Settings link/entry point on home page CTA section.
 
 ## Later (wiring)
 - [ ] Persist preferences to DB (Prisma model + API route + server action).
