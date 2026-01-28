@@ -2,14 +2,8 @@ import { NextResponse } from "next/server";
 
 import { db } from "../../../lib/db";
 import { getOrCreateCurrentUserId } from "../../../lib/currentUser";
-
-const DEFAULT_OPTIONS = [
-  "Teriyaki salmon + rice + broccoli",
-  "Chicken shawarma bowl (GF option)",
-  "Tofu bibimbap + kimchi",
-  "Turkey chili + cornbread",
-  "Pesto pasta + roasted veggies",
-];
+import { MENU } from "../../../lib/menu";
+import { generateWeeklyPlan } from "../../../lib/mealPlanGenerator";
 
 function startOfDayUtc(d: Date) {
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
@@ -31,11 +25,51 @@ function getWeekStartMondayUtc(date: Date) {
   return startOfDayUtc(monday);
 }
 
+async function ensureWeeklyPlan(userId: string, weekStart: Date) {
+  const prefs = await db.userPreferences.findUnique({ where: { userId } });
+
+  const plan = await db.mealPlan.upsert({
+    where: { userId_weekStart: { userId, weekStart } },
+    create: { userId, weekStart, source: "AI" },
+    update: {},
+    select: { id: true },
+  });
+
+  const generated = generateWeeklyPlan({
+    userId,
+    weekStartMondayUtc: weekStart,
+    menu: MENU,
+    prefs,
+  });
+
+  for (const item of generated) {
+    const existing = await db.mealPlanItem.findFirst({
+      where: { planId: plan.id, date: item.date },
+      orderBy: { createdAt: "desc" },
+      select: { id: true },
+    });
+
+    if (!existing) {
+      await db.mealPlanItem.create({
+        data: {
+          planId: plan.id,
+          date: item.date,
+          suggestion: item.suggestion,
+        },
+      });
+    }
+  }
+
+  return { planId: plan.id, prefs };
+}
+
 export async function GET() {
   const userId = await getOrCreateCurrentUserId();
 
   const date = getTomorrowUtc();
   const weekStart = getWeekStartMondayUtc(date);
+
+  await ensureWeeklyPlan(userId, weekStart);
 
   const confirmed = await db.mealEvent.findFirst({
     where: { userId, date },
@@ -56,12 +90,13 @@ export async function GET() {
       })
     : null;
 
-  const suggestion = plannedItem?.suggestion ?? DEFAULT_OPTIONS[date.getUTCDay() % DEFAULT_OPTIONS.length];
+  const options = MENU.map((m) => m.name);
+  const suggestion = plannedItem?.suggestion ?? options[date.getUTCDay() % options.length];
 
   return NextResponse.json({
     date: date.toISOString(),
     weekStart: weekStart.toISOString(),
-    options: DEFAULT_OPTIONS,
+    options,
     suggestion,
     confirmed: confirmed ? { id: confirmed.id, meal: confirmed.name } : null,
   });
@@ -79,6 +114,8 @@ export async function POST(req: Request) {
   const date = getTomorrowUtc();
   const weekStart = getWeekStartMondayUtc(date);
 
+  await ensureWeeklyPlan(userId, weekStart);
+
   const plan = await db.mealPlan.upsert({
     where: { userId_weekStart: { userId, weekStart } },
     create: { userId, weekStart, source: "USER" },
@@ -92,7 +129,8 @@ export async function POST(req: Request) {
     select: { id: true, suggestion: true },
   });
 
-  const suggestion = existingItem?.suggestion ?? DEFAULT_OPTIONS[date.getUTCDay() % DEFAULT_OPTIONS.length];
+  const options = MENU.map((m) => m.name);
+  const suggestion = existingItem?.suggestion ?? options[date.getUTCDay() % options.length];
   const overridden = meal !== suggestion;
 
   if (existingItem) {

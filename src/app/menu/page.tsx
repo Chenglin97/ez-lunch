@@ -1,28 +1,7 @@
-import { SiteHeader } from "../../components/SiteHeader";
-const MENU = [
-  {
-    name: "Teriyaki salmon + rice + broccoli",
-    tags: ["high-protein"],
-  },
-  {
-    name: "Chicken shawarma bowl (GF option)",
-    tags: ["high-protein", "gluten-free option"],
-  },
-  {
-    name: "Tofu bibimbap + kimchi",
-    tags: ["vegetarian"],
-  },
-  {
-    name: "Turkey chili + cornbread",
-    tags: ["comfort"],
-  },
-  {
-    name: "Pesto pasta + roasted veggies",
-    tags: ["vegetarian option"],
-  },
-];
-
 import Link from "next/link";
+
+import { SiteHeader } from "../../components/SiteHeader";
+import { MENU } from "../../lib/menu";
 
 export default function MenuPage() {
   return (
