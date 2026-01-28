@@ -28,6 +28,12 @@ export default function Home() {
               >
                 See sample menu
               </a>
+              <a
+                className="rounded-full border border-zinc-300 bg-white px-5 py-3 font-medium hover:bg-zinc-100"
+                href="/settings"
+              >
+                Settings
+              </a>
             </div>
             <p className="text-sm text-zinc-500">
               Bay Area-friendly • Fresh weekly lineup • Pause/cancel anytime
@@ -78,12 +84,12 @@ export default function Home() {
               5, 10, or 15 lunches per week. Pause anytime.
             </p>
           </div>
-          <div className="rounded-2xl border bg-white p-6">
+          <a className="rounded-2xl border bg-white p-6 hover:bg-zinc-50" href="/preferences">
             <div className="text-sm font-semibold">Set preferences</div>
             <p className="mt-2 text-sm text-zinc-600">
               High protein, vegetarian, gluten-free — you choose.
             </p>
-          </div>
+          </a>
           <div className="rounded-2xl border bg-white p-6">
             <div className="text-sm font-semibold">Delivered</div>
             <p className="mt-2 text-sm text-zinc-600">
