@@ -68,9 +68,7 @@ export default function MenuPage() {
         </div>
 
         <div className="mt-10">
-          <a className="text-sm hover:underline" href="/">
-            ← Back
-          </a>
+          <Link className="text-sm hover:underline" href="/">← Back</Link>
         </div>
       </main>
     </div>
