@@ -1,7 +1,13 @@
+import dynamic from "next/dynamic";
+
 import { SiteHeader } from "../../components/SiteHeader";
 import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { BAY_AREA_RESTAURANTS } from "../../data/bayAreaRestaurants";
-import { LeafletMap } from "./LeafletMap";
+
+const LeafletMap = dynamic(
+  () => import("./LeafletMap").then((m) => m.LeafletMap),
+  { ssr: false }
+);
 
 function uniqSorted(xs: string[]) {
   return Array.from(new Set(xs)).sort((a, b) => a.localeCompare(b));
@@ -23,8 +29,9 @@ export default function MapPage() {
           Restaurants & delivery area
         </h1>
         <p className="mt-2 text-sm text-zinc-600">
-          Map pins are driven by a geocoded seed list ({BAY_AREA_RESTAURANTS.length}
-          ). Next: geocode all restaurants in the dataset.
+          Leaflet pins + a placeholder delivery radius. ({BAY_AREA_RESTAURANTS.length}
+          {" "}
+          geocoded restaurants so far.)
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -51,7 +58,7 @@ export default function MapPage() {
               <LeafletMap />
             </div>
             <p className="mt-3 text-xs text-zinc-500">
-              Shows multiple pins + a placeholder delivery radius (5km).
+              Next: geocode every restaurant and compute real delivery zones.
             </p>
           </section>
         </div>
