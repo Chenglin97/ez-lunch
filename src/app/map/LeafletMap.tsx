@@ -23,10 +23,10 @@ export function LeafletMap() {
   useEffect(() => {
     if (!ref.current) return;
 
-    const center: L.LatLngExpression = [37.78, -122.42];
+    const defaultCenter: L.LatLngExpression = [37.78, -122.42];
 
     const map = L.map(ref.current, {
-      center,
+      center: defaultCenter,
       zoom: 10,
       zoomControl: true,
       attributionControl: true,
@@ -37,19 +37,29 @@ export function LeafletMap() {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
+    const markers: L.LatLngExpression[] = [];
+
     // Restaurant pins
     for (const r of BAY_AREA_RESTAURANTS) {
-      const marker = L.marker([r.lat, r.lng]).addTo(map);
+      const pos: L.LatLngExpression = [r.lat, r.lng];
+      markers.push(pos);
+      const marker = L.marker(pos).addTo(map);
       marker.bindPopup(`<b>${r.restaurant}</b><br/>${r.city}`);
+
+      // Placeholder delivery area circle around each restaurant.
+      L.circle(pos, {
+        radius: 2000,
+        color: "#111827",
+        weight: 1,
+        fillOpacity: 0.05,
+      }).addTo(map);
     }
 
-    // Placeholder delivery radius (around SF)
-    L.circle(center, {
-      radius: 5000,
-      color: "#111827",
-      weight: 2,
-      fillOpacity: 0.08,
-    }).addTo(map);
+    // Fit bounds to markers if present
+    if (markers.length) {
+      const bounds = L.latLngBounds(markers as any);
+      map.fitBounds(bounds.pad(0.15));
+    }
 
     return () => {
       map.remove();
