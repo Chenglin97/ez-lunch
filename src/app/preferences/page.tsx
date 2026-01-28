@@ -1,7 +1,7 @@
 "use client";
 
 import { SiteHeader } from "../../../components/SiteHeader";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Card,
   FieldLabel,
@@ -16,6 +16,7 @@ import {
   loadPreferencesLocal,
   savePreferencesLocal,
 } from "./save";
+import { loadPreferencesApi, savePreferencesApi } from "./api";
 import { parseOptionalNumber } from "./validation";
 
 function toList(s: string) {
@@ -23,6 +24,11 @@ function toList(s: string) {
     .split(/\n|,/)
     .map((x) => x.trim())
     .filter(Boolean);
+}
+
+function toTextList(arr: unknown): string {
+  if (!Array.isArray(arr)) return "";
+  return arr.map((x) => String(x)).join(", ");
 }
 
 const defaultDraft: PreferencesDraft = {
@@ -44,13 +50,50 @@ const defaultDraft: PreferencesDraft = {
 
 export default function PreferencesPage() {
   const [draft, setDraft] = useState<PreferencesDraft>(() => {
-    // Lazy init avoids react-hooks/set-state-in-effect lint rule.
     return loadPreferencesLocal() ?? defaultDraft;
   });
   const [saveState, setSaveState] = useState<
     "idle" | "saving" | "saved" | "error"
   >("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [infoMsg, setInfoMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Try API first; fallback to local.
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await loadPreferencesApi();
+        if (cancelled) return;
+        if (data?.preferences) {
+          const p = data.preferences;
+          setDraft({
+            diet: {
+              vegetarian: !!p.vegetarian,
+              vegan: !!p.vegan,
+              pescatarian: !!p.pescatarian,
+              glutenFree: !!p.glutenFree,
+              dairyFree: !!p.dairyFree,
+              nutFree: !!p.nutFree,
+            },
+            likedCuisines: toTextList(p.likedCuisines),
+            dislikedCuisines: toTextList(p.dislikedCuisines),
+            dislikedIngredients: toTextList(p.dislikedIngredients),
+            allergies: toTextList(p.allergies),
+            maxPrice: p.maxPrice != null ? String(p.maxPrice) : "",
+            radiusMiles: p.radiusMiles != null ? String(p.radiusMiles) : "",
+          });
+          setInfoMsg("Loaded from server");
+          setTimeout(() => setInfoMsg(null), 1500);
+        }
+      } catch {
+        // ignore
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const preview = useMemo(() => {
     return {
@@ -65,6 +108,9 @@ export default function PreferencesPage() {
       radiusMiles: draft.radiusMiles ? Number(draft.radiusMiles) : null,
     };
   }, [draft]);
+
+  const maxPriceErr = parseOptionalNumber(draft.maxPrice).error;
+  const radiusErr = parseOptionalNumber(draft.radiusMiles).error;
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
@@ -83,17 +129,29 @@ export default function PreferencesPage() {
           <button
             type="button"
             className="rounded-full bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
-            disabled={saveState === "saving" || !!parseOptionalNumber(draft.maxPrice).error || !!parseOptionalNumber(draft.radiusMiles).error}
-            onClick={() => {
+            disabled={saveState === "saving" || !!maxPriceErr || !!radiusErr}
+            onClick={async () => {
               setSaveState("saving");
               setErrorMsg(null);
               try {
+                // Server-first
+                await savePreferencesApi(draft);
+                // Local fallback copy
                 savePreferencesLocal(draft);
                 setSaveState("saved");
                 setTimeout(() => setSaveState("idle"), 1200);
               } catch {
-                setSaveState("error");
-                setErrorMsg("Failed to save preferences.");
+                // Fallback to local only
+                try {
+                  savePreferencesLocal(draft);
+                  setSaveState("saved");
+                  setTimeout(() => setSaveState("idle"), 1200);
+                  setInfoMsg("Saved locally (server unavailable)");
+                  setTimeout(() => setInfoMsg(null), 2000);
+                } catch {
+                  setSaveState("error");
+                  setErrorMsg("Failed to save preferences.");
+                }
               }
             }}
           >
@@ -112,6 +170,7 @@ export default function PreferencesPage() {
               setDraft(defaultDraft);
               setSaveState("idle");
               setErrorMsg(null);
+              setInfoMsg(null);
             }}
           >
             Reset
@@ -120,6 +179,7 @@ export default function PreferencesPage() {
           {errorMsg ? (
             <div className="text-sm text-red-600">{errorMsg}</div>
           ) : null}
+          {infoMsg ? <div className="text-sm text-zinc-600">{infoMsg}</div> : null}
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -198,10 +258,8 @@ export default function PreferencesPage() {
                   }
                 />
                 <HelpText>Leave blank if you don’t care.</HelpText>
-                {parseOptionalNumber(draft.maxPrice).error ? (
-                  <div className="mt-2 text-xs text-red-600">
-                    {parseOptionalNumber(draft.maxPrice).error}
-                  </div>
+                {maxPriceErr ? (
+                  <div className="mt-2 text-xs text-red-600">{maxPriceErr}</div>
                 ) : null}
               </div>
 
@@ -216,10 +274,8 @@ export default function PreferencesPage() {
                   }
                 />
                 <HelpText>Used for nearby restaurant suggestions.</HelpText>
-                {parseOptionalNumber(draft.radiusMiles).error ? (
-                  <div className="mt-2 text-xs text-red-600">
-                    {parseOptionalNumber(draft.radiusMiles).error}
-                  </div>
+                {radiusErr ? (
+                  <div className="mt-2 text-xs text-red-600">{radiusErr}</div>
                 ) : null}
               </div>
             </div>
