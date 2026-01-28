@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type DietFlags = {
@@ -118,9 +119,7 @@ export default function PreferencesPage() {
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <header className="border-b bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <a className="text-xl font-semibold tracking-tight" href="/">
-            ez lunch
-          </a>
+          <Link className="text-xl font-semibold tracking-tight" href="/">ez lunch</Link>
           <nav className="flex items-center gap-4 text-sm">
             <a className="hover:underline" href="/menu">
               Menu
