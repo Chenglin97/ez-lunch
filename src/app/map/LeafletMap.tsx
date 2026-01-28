@@ -74,11 +74,11 @@ export function LeafletMap() {
       const [restaurant, city] = key.split(" • ");
       const exact = byKey.get(key);
       const center = CITY_CENTERS[city];
-      const pos = exact
-        ? ([exact.lat, exact.lng] as const)
+      const pos: L.LatLngExpression = exact
+        ? [exact.lat, exact.lng]
         : center
-          ? ([center.lat, center.lng] as const)
-          : ([37.78, -122.42] as const);
+          ? [center.lat, center.lng]
+          : [37.78, -122.42];
 
       markers.push(pos);
 
