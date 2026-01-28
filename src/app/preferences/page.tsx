@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { Card, FieldLabel, HelpText, TextArea, TextInput, ToggleRow } from "./components";
 
 type DietFlags = {
   vegetarian: boolean;
@@ -22,61 +23,7 @@ type PreferencesDraft = {
   radiusMiles: string;
 };
 
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return <div className="text-sm font-medium text-zinc-900">{children}</div>;
-}
-
-function HelpText({ children }: { children: React.ReactNode }) {
-  return <div className="mt-1 text-xs text-zinc-500">{children}</div>;
-}
-
-function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      {...props}
-      className={
-        "mt-2 w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-900" +
-        (props.className ? ` ${props.className}` : "")
-      }
-    />
-  );
-}
-
-function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return (
-    <textarea
-      {...props}
-      className={
-        "mt-2 w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-900" +
-        (props.className ? ` ${props.className}` : "")
-      }
-    />
-  );
-}
-
-function ToggleRow({
-  label,
-  checked,
-  onChange,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (next: boolean) => void;
-}) {
-  return (
-    <label className="flex cursor-pointer items-center justify-between gap-4 rounded-xl border bg-white px-4 py-3">
-      <span className="text-sm text-zinc-900">{label}</span>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="h-5 w-5 accent-zinc-900"
-      />
-    </label>
-  );
-}
-
-function toList(s: string) {
+toList(s: string) {
   return s
     .split(/\n|,/)
     .map((x) => x.trim())
@@ -144,9 +91,8 @@ export default function PreferencesPage() {
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <section className="rounded-2xl border bg-white p-6">
-            <h2 className="text-lg font-semibold">Diet</h2>
-            <div className="mt-4 grid gap-3">
+          <Card title="Diet">
+            <div className="grid gap-3">
               <ToggleRow
                 label="Vegetarian"
                 checked={draft.diet.vegetarian}
@@ -201,12 +147,11 @@ export default function PreferencesPage() {
                   setDraft((d) => ({ ...d, diet: { ...d.diet, nutFree: next } }))
                 }
               />
-            </div>
-          </section>
+                        </div>
+          </Card>
 
-          <section className="rounded-2xl border bg-white p-6">
-            <h2 className="text-lg font-semibold">Budget & logistics</h2>
-            <div className="mt-4 grid gap-4">
+          <Card title="Budget & logistics">
+            <div className="grid gap-4">
               <div>
                 <FieldLabel>Max lunch price (USD)</FieldLabel>
                 <TextInput
@@ -232,11 +177,10 @@ export default function PreferencesPage() {
                 />
                 <HelpText>Used for nearby restaurant suggestions.</HelpText>
               </div>
-            </div>
-          </section>
+                        </div>
+          </Card>
 
-          <section className="rounded-2xl border bg-white p-6 md:col-span-2">
-            <h2 className="text-lg font-semibold">Cuisines & ingredients</h2>
+          <Card title="Cuisines & ingredients" className="md:col-span-2">
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               <div>
                 <FieldLabel>Liked cuisines</FieldLabel>
@@ -290,17 +234,16 @@ export default function PreferencesPage() {
                 <HelpText>Comma or newline separated.</HelpText>
               </div>
             </div>
-          </section>
+                    </Card>
 
-          <section className="rounded-2xl border bg-white p-6 md:col-span-2">
-            <h2 className="text-lg font-semibold">Preview (local only)</h2>
+          <Card title="Preview (local only)" className="md:col-span-2">
             <p className="mt-2 text-sm text-zinc-600">
               This is just a UI preview for now. Next step: wire to DB.
             </p>
             <pre className="mt-4 overflow-auto rounded-xl bg-zinc-900 p-4 text-xs text-zinc-100">
               {JSON.stringify(preview, null, 2)}
             </pre>
-          </section>
+                    </Card>
         </div>
       </main>
     </div>
