@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { db } from "../../../lib/db";
 import { getOrCreateCurrentUserId } from "../../../lib/currentUser";
+import { db } from "../../../lib/db";
 
 function toList(s: unknown): string[] {
   if (Array.isArray(s)) {
