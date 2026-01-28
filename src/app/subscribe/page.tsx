@@ -2,7 +2,10 @@
 
 import { SiteHeader } from "../../components/SiteHeader";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 export default function SubscribePage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <SiteHeader activeHref="/subscribe" />
@@ -54,9 +57,12 @@ export default function SubscribePage() {
           <button
             type="button"
             className="mt-2 w-full rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800"
-            onClick={() => alert("Demo: subscription saved (not really).")}
+            onClick={() => {
+              // Demo flow: continue to preferences.
+              router.push("/preferences");
+            }}
           >
-            Submit
+            Continue
           </button>
         </form>
 

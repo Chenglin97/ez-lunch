@@ -1,6 +1,7 @@
 "use client";
 
 import { SiteHeader } from "../../components/SiteHeader";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
   Card,
@@ -175,6 +176,13 @@ export default function PreferencesPage() {
           >
             Reset
           </button>
+
+          <Link
+            className="rounded-full border border-zinc-300 bg-white px-5 py-3 text-sm font-medium hover:bg-zinc-100"
+            href="/confirm"
+          >
+            Next: confirm tomorrow →
+          </Link>
 
           {errorMsg ? (
             <div className="text-sm text-red-600">{errorMsg}</div>

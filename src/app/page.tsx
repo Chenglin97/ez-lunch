@@ -77,25 +77,31 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-14 grid gap-6 md:grid-cols-3">
-          <div className="rounded-2xl border bg-white p-6">
-            <div className="text-sm font-semibold">Pick a plan</div>
+        <section className="mt-14 grid gap-6 md:grid-cols-4">
+          <a className="rounded-2xl border bg-white p-6 hover:bg-zinc-50" href="/subscribe">
+            <div className="text-sm font-semibold">Subscribe</div>
             <p className="mt-2 text-sm text-zinc-600">
-              5, 10, or 15 lunches per week. Pause anytime.
-            </p>
-          </div>
-          <a className="rounded-2xl border bg-white p-6 hover:bg-zinc-50" href="/preferences">
-            <div className="text-sm font-semibold">Set preferences</div>
-            <p className="mt-2 text-sm text-zinc-600">
-              High protein, vegetarian, gluten-free — you choose.
+              Pick a plan. Demo checkout for now.
             </p>
           </a>
-          <div className="rounded-2xl border bg-white p-6">
-            <div className="text-sm font-semibold">Delivered</div>
+          <a className="rounded-2xl border bg-white p-6 hover:bg-zinc-50" href="/preferences">
+            <div className="text-sm font-semibold">Preferences</div>
             <p className="mt-2 text-sm text-zinc-600">
-              Doorstep dropoff in the Bay Area.
+              Dietary prefs + budget + dislikes.
             </p>
-          </div>
+          </a>
+          <a className="rounded-2xl border bg-white p-6 hover:bg-zinc-50" href="/confirm">
+            <div className="text-sm font-semibold">Confirm tomorrow</div>
+            <p className="mt-2 text-sm text-zinc-600">
+              Review the suggestion and confirm.
+            </p>
+          </a>
+          <a className="rounded-2xl border bg-white p-6 hover:bg-zinc-50" href="/delivery">
+            <div className="text-sm font-semibold">Delivery status</div>
+            <p className="mt-2 text-sm text-zinc-600">
+              Track prep → out for delivery → delivered.
+            </p>
+          </a>
         </section>
 
         <section className="mt-14 rounded-2xl border bg-white p-8">

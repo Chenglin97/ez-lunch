@@ -5,8 +5,10 @@ type NavItem = { href: string; label: string };
 const NAV: NavItem[] = [
   { href: "/menu", label: "Menu" },
   { href: "/how-it-works", label: "How it works" },
-  { href: "/preferences", label: "Preferences" },
   { href: "/subscribe", label: "Subscribe" },
+  { href: "/preferences", label: "Preferences" },
+  { href: "/confirm", label: "Confirm" },
+  { href: "/delivery", label: "Delivery" },
   { href: "/settings", label: "Settings" },
   { href: "/login", label: "Login" },
 ];
