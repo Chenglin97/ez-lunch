@@ -33,7 +33,7 @@ function uniqKeys(xs: string[]) {
   return Array.from(new Set(xs));
 }
 
-export function LeafletMap() {
+export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export function LeafletMap() {
 
       // Placeholder delivery area circle around each restaurant.
       L.circle(pos, {
-        radius: 2000,
+        radius: radiusKm * 1000,
         color: "#111827",
         weight: 1,
         fillOpacity: 0.05,
