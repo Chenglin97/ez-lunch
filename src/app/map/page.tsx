@@ -1,6 +1,17 @@
 import { SiteHeader } from "../../components/SiteHeader";
+import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
+
+function uniqSorted(xs: string[]) {
+  return Array.from(new Set(xs)).sort((a, b) => a.localeCompare(b));
+}
 
 export default function MapPage() {
+  const restaurants = uniqSorted(
+    BAY_AREA_MEALS.map((m) => `${m.restaurant} • ${m.city}`)
+  );
+
+  const cities = uniqSorted(BAY_AREA_MEALS.map((m) => m.city));
+
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <SiteHeader activeHref="/map" />
@@ -10,24 +21,26 @@ export default function MapPage() {
           Restaurants & delivery area
         </h1>
         <p className="mt-2 text-sm text-zinc-600">
-          Demo map. Next iteration will plot real restaurant pins + delivery
-          zones.
+          We’ll plot pins/zones next. For now, this page is wired to the real
+          Bay Area restaurant dataset.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <section className="rounded-2xl border bg-white p-6">
-            <h2 className="text-lg font-semibold">Delivery area (Bay Area)</h2>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-700">
-              <li>San Francisco</li>
-              <li>San Mateo</li>
-              <li>Redwood City / Palo Alto</li>
-              <li>Mountain View / Sunnyvale</li>
-              <li>San Jose</li>
-            </ul>
-            <p className="mt-4 text-xs text-zinc-500">
-              Placeholder only — we’ll compute zones once we have real restaurant
-              locations.
+            <h2 className="text-lg font-semibold">Restaurants (dataset)</h2>
+            <p className="mt-2 text-xs text-zinc-500">
+              {restaurants.length} restaurant locations across {cities.length} cities.
             </p>
+
+            <div className="mt-4 max-h-[360px] overflow-auto rounded-xl border">
+              <ul className="divide-y text-sm">
+                {restaurants.map((r) => (
+                  <li key={r} className="px-4 py-3">
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
 
           <section className="rounded-2xl border bg-white p-6">
@@ -40,7 +53,8 @@ export default function MapPage() {
               />
             </div>
             <p className="mt-3 text-xs text-zinc-500">
-              Uses OpenStreetMap embed. No API key required.
+              Next: add lat/lng per restaurant and render pins + delivery radius
+              overlays.
             </p>
           </section>
         </div>
