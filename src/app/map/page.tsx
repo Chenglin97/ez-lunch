@@ -4,8 +4,6 @@ import { SiteHeader } from "../../components/SiteHeader";
 import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { BAY_AREA_RESTAURANTS } from "../../data/bayAreaRestaurants";
 
-import { MapContainer, Marker, Popup, TileLayer, Circle } from "react-leaflet";
-
 function uniqSorted(xs: string[]) {
   return Array.from(new Set(xs)).sort((a, b) => a.localeCompare(b));
 }
@@ -17,9 +15,6 @@ export default function MapPage() {
 
   const cities = uniqSorted(BAY_AREA_MEALS.map((m) => m.city));
 
-  const center: [number, number] = [37.78, -122.42];
-  const radiusMeters = 5000; // placeholder delivery radius
-
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <SiteHeader activeHref="/map" />
@@ -29,8 +24,8 @@ export default function MapPage() {
           Restaurants & delivery area
         </h1>
         <p className="mt-2 text-sm text-zinc-600">
-          Leaflet map with restaurant pins + a placeholder delivery radius. Next:
-          compute delivery zones per driver/route.
+          This is an initial Bay Area map using OpenStreetMap embeds (no API key).
+          Next: improve coverage by adding lat/lng for all restaurants in the dataset.
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -52,36 +47,17 @@ export default function MapPage() {
           </section>
 
           <section className="rounded-2xl border bg-white p-6">
-            <h2 className="text-lg font-semibold">Map</h2>
+            <h2 className="text-lg font-semibold">Map (restaurant pins)</h2>
             <div className="mt-4 overflow-hidden rounded-xl border">
-              <div className="h-[360px] w-full">
-                <MapContainer
-                  center={center}
-                  zoom={10}
-                  scrollWheelZoom={false}
-                  className="h-full w-full"
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-
-                  {BAY_AREA_RESTAURANTS.map((r) => (
-                    <Marker key={`${r.restaurant}-${r.city}`} position={[r.lat, r.lng]}>
-                      <Popup>
-                        <div className="text-sm font-medium">{r.restaurant}</div>
-                        <div className="text-xs text-zinc-600">{r.city}</div>
-                      </Popup>
-                    </Marker>
-                  ))}
-
-                  <Circle center={center} radius={radiusMeters} />
-                </MapContainer>
-              </div>
+              <iframe
+                title="Bay Area Restaurant Pins"
+                className="h-[360px] w-full"
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=-122.75%2C37.18%2C-121.75%2C37.95&layer=mapnik&marker=${BAY_AREA_RESTAURANTS[0].lat}%2C${BAY_AREA_RESTAURANTS[0].lng}`}
+              />
             </div>
             <p className="mt-3 text-xs text-zinc-500">
-              Pins show a small geocoded seed list. We’ll expand geocoding as we
-              expand the meal dataset.
+              Showing one marker for now (OSM embed supports a single marker).
+              Next: switch to Leaflet so we can draw many pins + delivery zones.
             </p>
           </section>
         </div>
