@@ -6,6 +6,7 @@ import L from "leaflet";
 
 import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { BAY_AREA_RESTAURANTS } from "../../data/bayAreaRestaurants";
+import { convexHull } from "./geometry";
 
 // Fix default marker icons when bundling
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -63,6 +64,7 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
     );
 
     const markers: L.LatLngExpression[] = [];
+    const geocodedPoints: { lat: number; lng: number }[] = [];
 
     const approxIcon = L.divIcon({
       className: "",
@@ -92,6 +94,7 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
           : [37.78, -122.42];
 
       markers.push(pos);
+      if (exact) geocodedPoints.push({ lat: exact.lat, lng: exact.lng });
 
       const marker = exact
         ? L.marker(pos, { icon: geoIcon })
@@ -108,6 +111,17 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
         color: "#111827",
         weight: 1,
         fillOpacity: 0.05,
+      }).addTo(map);
+    }
+
+    if (geocodedPoints.length >= 3) {
+      const hull = convexHull(geocodedPoints.map((p) => ({ x: p.lng, y: p.lat })));
+      const latlngs = hull.map((p) => [p.y, p.x] as [number, number]);
+      L.polygon(latlngs, {
+        color: "#10b981",
+        weight: 2,
+        fillColor: "#10b981",
+        fillOpacity: 0.08,
       }).addTo(map);
     }
 
@@ -151,6 +165,20 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
             }}
           />
           <span>Geocoded (restaurant)</span>
+        </div>
+        <div className="mt-1 flex items-center gap-2">
+          <span
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: 2,
+              background: "#10b981",
+              border: "2px solid #10b981",
+              display: "inline-block",
+              opacity: 0.35,
+            }}
+          />
+          <span>Zone (convex hull of geocoded pins)</span>
         </div>
         <div className="mt-1 text-[11px] text-zinc-600">Radius: {radiusKm} km</div>
       </div>
