@@ -82,9 +82,16 @@ export function LeafletMap() {
 
       markers.push(pos);
 
-      const marker = exact
-        ? L.marker(pos)
-        : L.marker(pos, { icon: approxIcon, opacity: 0.9 });
+      const geoIcon = L.divIcon({
+      className: "",
+      html: '<div style="width:10px;height:10px;border-radius:999px;background:#3b82f6;border:2px solid #111827"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7],
+    });
+
+    const marker = exact
+      ? L.marker(pos, { icon: geoIcon })
+      : L.marker(pos, { icon: approxIcon, opacity: 0.9 });
 
       marker.addTo(map);
 
@@ -111,5 +118,23 @@ export function LeafletMap() {
     };
   }, []);
 
-  return <div ref={ref} className="h-[360px] w-full" />;
+  return (
+    <div className="relative">
+      <div
+        data-map-legend
+        className="pointer-events-none absolute left-3 top-3 z-[1000] rounded-xl border bg-white/90 px-3 py-2 text-xs text-zinc-800 shadow-sm"
+      >
+        <div className="flex items-center gap-2">
+          <span style={{ width: 10, height: 10, borderRadius: 9999, background: "#f59e0b", border: "2px solid #111827", display: "inline-block" }} />
+          <span>Approx (city center)</span>
+        </div>
+        <div className="mt-1 flex items-center gap-2">
+          <span style={{ width: 10, height: 10, borderRadius: 9999, background: "#3b82f6", border: "2px solid #111827", display: "inline-block" }} />
+          <span>Geocoded (restaurant)</span>
+        </div>
+      </div>
+      <div ref={ref} className="h-[360px] w-full" />
+    </div>
+  );
 }
+
