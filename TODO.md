@@ -14,3 +14,6 @@
 7. Persist preferences to DB (Prisma model + API route + server action).
 8. Load saved preferences on page load.
 9. Add auth/user identity (even a demo "user" seed) so preferences are per-user.
+
+## Fixes discovered
+- [x] Fix preferences page parse error introduced during refactor (6f693bf).
