@@ -22,8 +22,8 @@ type PreferencesDraft = {
   maxPrice: string;
   radiusMiles: string;
 };
+function toList(s: string) {
 
-toList(s: string) {
   return s
     .split(/\n|,/)
     .map((x) => x.trim())
