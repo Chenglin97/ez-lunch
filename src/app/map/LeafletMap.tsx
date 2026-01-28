@@ -64,7 +64,7 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
     );
 
     const markers: L.LatLngExpression[] = [];
-    const geocodedPoints: { lat: number; lng: number }[] = [];
+    const geocodedByCity = new Map<string, { lat: number; lng: number }[]>();
 
     const approxIcon = L.divIcon({
       className: "",
@@ -94,7 +94,12 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
           : [37.78, -122.42];
 
       markers.push(pos);
-      if (exact) geocodedPoints.push({ lat: exact.lat, lng: exact.lng });
+
+      if (exact) {
+        const arr = geocodedByCity.get(city) ?? [];
+        arr.push({ lat: exact.lat, lng: exact.lng });
+        geocodedByCity.set(city, arr);
+      }
 
       const marker = exact
         ? L.marker(pos, { icon: geoIcon })
@@ -114,15 +119,18 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
       }).addTo(map);
     }
 
-    if (geocodedPoints.length >= 3) {
-      const hull = convexHull(geocodedPoints.map((p) => ({ x: p.lng, y: p.lat })));
+    // Simple zone visualization: convex hull per-city (only when enough geocoded points exist).
+    for (const [city, pts] of geocodedByCity.entries()) {
+      if (pts.length < 3) continue;
+      const hull = convexHull(pts.map((p) => ({ x: p.lng, y: p.lat })));
       const latlngs = hull.map((p) => [p.y, p.x] as [number, number]);
-      L.polygon(latlngs, {
+      const poly = L.polygon(latlngs, {
         color: "#10b981",
         weight: 2,
         fillColor: "#10b981",
         fillOpacity: 0.08,
       }).addTo(map);
+      poly.bindTooltip(`${city} zone (convex hull)`, { sticky: true });
     }
 
     if (markers.length) {
@@ -178,7 +186,7 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
               opacity: 0.35,
             }}
           />
-          <span>Zone (convex hull of geocoded pins)</span>
+          <span>Zone (convex hull of geocoded pins, per-city)</span>
         </div>
         <div className="mt-1 text-[11px] text-zinc-600">Radius: {radiusKm} km</div>
       </div>
