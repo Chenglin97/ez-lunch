@@ -337,9 +337,9 @@ export default function PreferencesPage() {
             </div>
           </Card>
 
-          <Card title="Preview (local only)" className="md:col-span-2">
+          <Card title="Preview" className="md:col-span-2">
             <p className="text-sm text-zinc-600">
-              This is just a UI preview for now. Next step: wire to DB.
+              Preview of what will be saved. (We save to the server when available, and keep a local copy as a fallback.)
             </p>
             <pre className="mt-4 overflow-auto rounded-xl bg-zinc-900 p-4 text-xs text-zinc-100">
               {JSON.stringify(preview, null, 2)}
