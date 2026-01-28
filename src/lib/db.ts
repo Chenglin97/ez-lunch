@@ -4,7 +4,6 @@ import { PrismaClient } from "../generated/prisma";
 // Use a global singleton to avoid exhausting connections.
 
 declare global {
-  // eslint-disable-next-line no-var
   var __prisma: PrismaClient | undefined;
 }
 
