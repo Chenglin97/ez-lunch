@@ -7,6 +7,7 @@ const NAV: NavItem[] = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/preferences", label: "Preferences" },
   { href: "/subscribe", label: "Subscribe" },
+  { href: "/settings", label: "Settings" },
 ];
 
 export function SiteHeader({
