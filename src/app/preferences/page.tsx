@@ -1,31 +1,309 @@
-export default function PreferencesPage() {
+"use client";
+
+import { useMemo, useState } from "react";
+
+type DietFlags = {
+  vegetarian: boolean;
+  vegan: boolean;
+  pescatarian: boolean;
+  glutenFree: boolean;
+  dairyFree: boolean;
+  nutFree: boolean;
+};
+
+type PreferencesDraft = {
+  diet: DietFlags;
+  likedCuisines: string;
+  dislikedCuisines: string;
+  dislikedIngredients: string;
+  allergies: string;
+  maxPrice: string;
+  radiusMiles: string;
+};
+
+function FieldLabel({ children }: { children: React.ReactNode }) {
+  return <div className="text-sm font-medium text-zinc-900">{children}</div>;
+}
+
+function HelpText({ children }: { children: React.ReactNode }) {
+  return <div className="mt-1 text-xs text-zinc-500">{children}</div>;
+}
+
+function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <main style={{ maxWidth: 820, margin: "0 auto", padding: "32px 16px" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700 }}>Preferences</h1>
-      <p style={{ marginTop: 8, opacity: 0.85 }}>
-        Tell ez-lunch what you like and what you want to avoid.
-      </p>
+    <input
+      {...props}
+      className={
+        "mt-2 w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-900" +
+        (props.className ? ` ${props.className}` : "")
+      }
+    />
+  );
+}
 
-      <section style={{ marginTop: 24 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 600 }}>Diet</h2>
-        <p style={{ marginTop: 6, opacity: 0.75 }}>
-          (UI coming next) Vegetarian/vegan/etc.
-        </p>
-      </section>
+function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return (
+    <textarea
+      {...props}
+      className={
+        "mt-2 w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-900" +
+        (props.className ? ` ${props.className}` : "")
+      }
+    />
+  );
+}
 
-      <section style={{ marginTop: 24 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 600 }}>Cuisines & Ingredients</h2>
-        <p style={{ marginTop: 6, opacity: 0.75 }}>
-          (UI coming next) Favorite cuisines, dislikes, allergies.
-        </p>
-      </section>
+function ToggleRow({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (next: boolean) => void;
+}) {
+  return (
+    <label className="flex cursor-pointer items-center justify-between gap-4 rounded-xl border bg-white px-4 py-3">
+      <span className="text-sm text-zinc-900">{label}</span>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="h-5 w-5 accent-zinc-900"
+      />
+    </label>
+  );
+}
 
-      <section style={{ marginTop: 24 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 600 }}>Budget & Logistics</h2>
-        <p style={{ marginTop: 6, opacity: 0.75 }}>
-          (UI coming next) Price cap, distance, lunch days.
-        </p>
-      </section>
-    </main>
+function toList(s: string) {
+  return s
+    .split(/\n|,/)
+    .map((x) => x.trim())
+    .filter(Boolean);
+}
+
+export default function PreferencesPage() {
+  const [draft, setDraft] = useState<PreferencesDraft>({
+    diet: {
+      vegetarian: false,
+      vegan: false,
+      pescatarian: false,
+      glutenFree: false,
+      dairyFree: false,
+      nutFree: false,
+    },
+    likedCuisines: "",
+    dislikedCuisines: "",
+    dislikedIngredients: "",
+    allergies: "",
+    maxPrice: "",
+    radiusMiles: "",
+  });
+
+  const preview = useMemo(() => {
+    return {
+      diet: Object.fromEntries(
+        Object.entries(draft.diet).filter(([, v]) => v)
+      ) as Partial<DietFlags>,
+      likedCuisines: toList(draft.likedCuisines),
+      dislikedCuisines: toList(draft.dislikedCuisines),
+      dislikedIngredients: toList(draft.dislikedIngredients),
+      allergies: toList(draft.allergies),
+      maxPrice: draft.maxPrice ? Number(draft.maxPrice) : null,
+      radiusMiles: draft.radiusMiles ? Number(draft.radiusMiles) : null,
+    };
+  }, [draft]);
+
+  return (
+    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+      <header className="border-b bg-white">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+          <a className="text-xl font-semibold tracking-tight" href="/">
+            ez lunch
+          </a>
+          <nav className="flex items-center gap-4 text-sm">
+            <a className="hover:underline" href="/menu">
+              Menu
+            </a>
+            <a className="hover:underline" href="/how-it-works">
+              How it works
+            </a>
+            <a className="hover:underline" href="/preferences">
+              Preferences
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-5xl px-6 py-10">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-semibold tracking-tight">Preferences</h1>
+          <p className="text-sm text-zinc-600">
+            Set your defaults. We’ll use these to generate weekly lunch
+            suggestions.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <section className="rounded-2xl border bg-white p-6">
+            <h2 className="text-lg font-semibold">Diet</h2>
+            <div className="mt-4 grid gap-3">
+              <ToggleRow
+                label="Vegetarian"
+                checked={draft.diet.vegetarian}
+                onChange={(next) =>
+                  setDraft((d) => ({
+                    ...d,
+                    diet: { ...d.diet, vegetarian: next },
+                  }))
+                }
+              />
+              <ToggleRow
+                label="Vegan"
+                checked={draft.diet.vegan}
+                onChange={(next) =>
+                  setDraft((d) => ({ ...d, diet: { ...d.diet, vegan: next } }))
+                }
+              />
+              <ToggleRow
+                label="Pescatarian"
+                checked={draft.diet.pescatarian}
+                onChange={(next) =>
+                  setDraft((d) => ({
+                    ...d,
+                    diet: { ...d.diet, pescatarian: next },
+                  }))
+                }
+              />
+              <ToggleRow
+                label="Gluten-free"
+                checked={draft.diet.glutenFree}
+                onChange={(next) =>
+                  setDraft((d) => ({
+                    ...d,
+                    diet: { ...d.diet, glutenFree: next },
+                  }))
+                }
+              />
+              <ToggleRow
+                label="Dairy-free"
+                checked={draft.diet.dairyFree}
+                onChange={(next) =>
+                  setDraft((d) => ({
+                    ...d,
+                    diet: { ...d.diet, dairyFree: next },
+                  }))
+                }
+              />
+              <ToggleRow
+                label="Nut-free"
+                checked={draft.diet.nutFree}
+                onChange={(next) =>
+                  setDraft((d) => ({ ...d, diet: { ...d.diet, nutFree: next } }))
+                }
+              />
+            </div>
+          </section>
+
+          <section className="rounded-2xl border bg-white p-6">
+            <h2 className="text-lg font-semibold">Budget & logistics</h2>
+            <div className="mt-4 grid gap-4">
+              <div>
+                <FieldLabel>Max lunch price (USD)</FieldLabel>
+                <TextInput
+                  inputMode="numeric"
+                  placeholder="e.g. 20"
+                  value={draft.maxPrice}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, maxPrice: e.target.value }))
+                  }
+                />
+                <HelpText>Leave blank if you don’t care.</HelpText>
+              </div>
+
+              <div>
+                <FieldLabel>Search radius (miles)</FieldLabel>
+                <TextInput
+                  inputMode="decimal"
+                  placeholder="e.g. 3"
+                  value={draft.radiusMiles}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, radiusMiles: e.target.value }))
+                  }
+                />
+                <HelpText>Used for nearby restaurant suggestions.</HelpText>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border bg-white p-6 md:col-span-2">
+            <h2 className="text-lg font-semibold">Cuisines & ingredients</h2>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              <div>
+                <FieldLabel>Liked cuisines</FieldLabel>
+                <TextArea
+                  rows={4}
+                  placeholder="Japanese, Korean, Mediterranean"
+                  value={draft.likedCuisines}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, likedCuisines: e.target.value }))
+                  }
+                />
+                <HelpText>Comma or newline separated.</HelpText>
+              </div>
+              <div>
+                <FieldLabel>Disliked cuisines</FieldLabel>
+                <TextArea
+                  rows={4}
+                  placeholder="(optional)"
+                  value={draft.dislikedCuisines}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, dislikedCuisines: e.target.value }))
+                  }
+                />
+                <HelpText>Comma or newline separated.</HelpText>
+              </div>
+              <div>
+                <FieldLabel>Disliked ingredients</FieldLabel>
+                <TextArea
+                  rows={4}
+                  placeholder="cilantro, olives"
+                  value={draft.dislikedIngredients}
+                  onChange={(e) =>
+                    setDraft((d) => ({
+                      ...d,
+                      dislikedIngredients: e.target.value,
+                    }))
+                  }
+                />
+                <HelpText>We’ll avoid these when generating suggestions.</HelpText>
+              </div>
+              <div>
+                <FieldLabel>Allergies</FieldLabel>
+                <TextArea
+                  rows={4}
+                  placeholder="peanuts"
+                  value={draft.allergies}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, allergies: e.target.value }))
+                  }
+                />
+                <HelpText>Comma or newline separated.</HelpText>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border bg-white p-6 md:col-span-2">
+            <h2 className="text-lg font-semibold">Preview (local only)</h2>
+            <p className="mt-2 text-sm text-zinc-600">
+              This is just a UI preview for now. Next step: wire to DB.
+            </p>
+            <pre className="mt-4 overflow-auto rounded-xl bg-zinc-900 p-4 text-xs text-zinc-100">
+              {JSON.stringify(preview, null, 2)}
+            </pre>
+          </section>
+        </div>
+      </main>
+    </div>
   );
 }
