@@ -1,7 +1,6 @@
 "use client";
 
 import { SiteHeader } from "../../../components/SiteHeader";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   Card,
