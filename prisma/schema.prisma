@@ -1,0 +1,138 @@
+// Prisma schema for ez-lunch
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LunchSource {
+  CAFE
+  RESTAURANT
+  FAST_FOOD
+  LEFTOVERS
+  HOME_COOKED
+  DELIVERY
+  OTHER
+}
+
+enum SwipeDecision {
+  LIKE
+  DISLIKE
+  SKIP
+}
+
+enum PlanSource {
+  AI
+  USER
+  HYBRID
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email     String?  @unique
+  name      String?
+
+  preferences UserPreferences?
+  meals       MealEvent[]
+  swipes      SwipeEvent[]
+  plans       MealPlan[]
+}
+
+model UserPreferences {
+  userId    String @id
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  vegetarian          Boolean @default(false)
+  vegan               Boolean @default(false)
+  pescatarian         Boolean @default(false)
+  halal               Boolean @default(false)
+  kosher              Boolean @default(false)
+  glutenFree          Boolean @default(false)
+  dairyFree           Boolean @default(false)
+  nutFree             Boolean @default(false)
+
+  allergies           String[] @default([])
+  dislikedIngredients String[] @default([])
+  likedCuisines       String[] @default([])
+  dislikedCuisines    String[] @default([])
+
+  maxPrice            Int?
+  radiusMiles         Float?
+
+  lunchDays           Int[]    @default([1,2,3,4,5])
+
+  updatedAt DateTime @updatedAt
+}
+
+model MealEvent {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  date      DateTime
+  name      String
+  source    LunchSource @default(OTHER)
+  placeId   String?
+  notes     String?
+
+  rating    Int?
+  costCents Int?
+
+  @@index([userId, date])
+}
+
+model SwipeEvent {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  date       DateTime
+  suggestion String
+  decision   SwipeDecision
+  reason     String?
+
+  @@index([userId, date])
+}
+
+model MealPlan {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  weekStart DateTime
+  source    PlanSource @default(AI)
+
+  items     MealPlanItem[]
+
+  @@unique([userId, weekStart])
+}
+
+model MealPlanItem {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+
+  planId     String
+  plan       MealPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  date       DateTime
+  suggestion String
+  source     LunchSource @default(OTHER)
+  overridden Boolean @default(false)
+
+  @@index([planId, date])
+}
