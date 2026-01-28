@@ -16,6 +16,7 @@ import {
   loadPreferencesLocal,
   savePreferencesLocal,
 } from "./save";
+import { parseOptionalNumber } from "./validation";
 
 function toList(s: string) {
   return s
@@ -99,7 +100,7 @@ export default function PreferencesPage() {
           <button
             type="button"
             className="rounded-full bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
-            disabled={saveState === "saving"}
+            disabled={saveState === "saving" || !!parseOptionalNumber(draft.maxPrice).error || !!parseOptionalNumber(draft.radiusMiles).error}
             onClick={() => {
               setSaveState("saving");
               setErrorMsg(null);
@@ -214,6 +215,11 @@ export default function PreferencesPage() {
                   }
                 />
                 <HelpText>Leave blank if you don’t care.</HelpText>
+                {parseOptionalNumber(draft.maxPrice).error ? (
+                  <div className="mt-2 text-xs text-red-600">
+                    {parseOptionalNumber(draft.maxPrice).error}
+                  </div>
+                ) : null}
               </div>
 
               <div>
@@ -227,6 +233,11 @@ export default function PreferencesPage() {
                   }
                 />
                 <HelpText>Used for nearby restaurant suggestions.</HelpText>
+                {parseOptionalNumber(draft.radiusMiles).error ? (
+                  <div className="mt-2 text-xs text-red-600">
+                    {parseOptionalNumber(draft.radiusMiles).error}
+                  </div>
+                ) : null}
               </div>
             </div>
           </Card>
