@@ -11,6 +11,9 @@ export default function Home() {
             <a className="hover:underline" href="/how-it-works">
               How it works
             </a>
+            <a className="hover:underline" href="/preferences">
+              Preferences
+            </a>
             <a
               className="rounded-full bg-zinc-900 px-4 py-2 font-medium text-white hover:bg-zinc-800"
               href="/subscribe"
