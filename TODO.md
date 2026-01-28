@@ -12,8 +12,8 @@
 - [x] Add Settings link/entry point on home page CTA section.
 
 ## Later (wiring)
-- [ ] Persist preferences to DB (Prisma model + API route + server action).
-- [ ] Load saved preferences from DB on page load.
+- [x] Persist preferences to DB (Prisma model + API route).
+- [x] Load saved preferences from DB on page load (API client).
 - [ ] Add auth/user identity (even a demo "user" seed) so preferences are per-user.
 
 ## Fixes discovered
