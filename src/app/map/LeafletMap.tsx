@@ -58,7 +58,9 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
       byKey.set(`${r.restaurant} • ${r.city}`, { lat: r.lat, lng: r.lng });
     }
 
-    const allKeys = uniqKeys(BAY_AREA_MEALS.map((m) => `${m.restaurant} • ${m.city}`));
+    const allKeys = uniqKeys(
+      BAY_AREA_MEALS.map((m) => `${m.restaurant} • ${m.city}`)
+    );
 
     const markers: L.LatLngExpression[] = [];
 
@@ -70,10 +72,19 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
       iconAnchor: [7, 7],
     });
 
+    const geoIcon = L.divIcon({
+      className: "",
+      html:
+        '<div style="width:10px;height:10px;border-radius:999px;background:#3b82f6;border:2px solid #111827"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7],
+    });
+
     for (const key of allKeys) {
       const [restaurant, city] = key.split(" • ");
       const exact = byKey.get(key);
       const center = CITY_CENTERS[city];
+
       const pos: L.LatLngExpression = exact
         ? [exact.lat, exact.lng]
         : center
@@ -82,16 +93,9 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
 
       markers.push(pos);
 
-      const geoIcon = L.divIcon({
-      className: "",
-      html: '<div style="width:10px;height:10px;border-radius:999px;background:#3b82f6;border:2px solid #111827"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7],
-    });
-
-    const marker = exact
-      ? L.marker(pos, { icon: geoIcon })
-      : L.marker(pos, { icon: approxIcon, opacity: 0.9 });
+      const marker = exact
+        ? L.marker(pos, { icon: geoIcon })
+        : L.marker(pos, { icon: approxIcon, opacity: 0.9 });
 
       marker.addTo(map);
 
@@ -99,7 +103,6 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
         `<b>${restaurant}</b><br/>${city}<br/><span style="font-size:12px;opacity:.8">${exact ? "geocoded" : "approx (city center)"}</span>`
       );
 
-      // Placeholder delivery area circle around each restaurant.
       L.circle(pos, {
         radius: radiusKm * 1000,
         color: "#111827",
@@ -116,25 +119,42 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
     return () => {
       map.remove();
     };
-  }, []);
+  }, [radiusKm]);
 
   return (
     <div className="relative">
       <div
-        data-map-legend
         className="pointer-events-none absolute left-3 top-3 z-[1000] rounded-xl border bg-white/90 px-3 py-2 text-xs text-zinc-800 shadow-sm"
       >
         <div className="flex items-center gap-2">
-          <span style={{ width: 10, height: 10, borderRadius: 9999, background: "#f59e0b", border: "2px solid #111827", display: "inline-block" }} />
+          <span
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: 9999,
+              background: "#f59e0b",
+              border: "2px solid #111827",
+              display: "inline-block",
+            }}
+          />
           <span>Approx (city center)</span>
         </div>
         <div className="mt-1 flex items-center gap-2">
-          <span style={{ width: 10, height: 10, borderRadius: 9999, background: "#3b82f6", border: "2px solid #111827", display: "inline-block" }} />
+          <span
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: 9999,
+              background: "#3b82f6",
+              border: "2px solid #111827",
+              display: "inline-block",
+            }}
+          />
           <span>Geocoded (restaurant)</span>
         </div>
+        <div className="mt-1 text-[11px] text-zinc-600">Radius: {radiusKm} km</div>
       </div>
       <div ref={ref} className="h-[360px] w-full" />
     </div>
   );
 }
-

@@ -2,7 +2,6 @@ import { SiteHeader } from "../../components/SiteHeader";
 import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { BAY_AREA_RESTAURANTS } from "../../data/bayAreaRestaurants";
 import { MapClient } from "./MapClient";
-import { MapControls } from "./MapControls";
 
 function uniqSorted(xs: string[]) {
   return Array.from(new Set(xs)).sort((a, b) => a.localeCompare(b));
@@ -22,9 +21,6 @@ export default function MapPage() {
 
   const cities = uniqSorted(BAY_AREA_MEALS.map((m) => m.city));
 
-  // radius state is in a client component; MapClient is also client.
-  // We render the map in a client island so SSR/build stays happy.
-
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <SiteHeader activeHref="/map" />
@@ -40,15 +36,6 @@ export default function MapPage() {
           </span>
           .
         </p>
-
-        <div className="mt-6 rounded-2xl border bg-white p-4">
-          <MapControls
-            onRadiusKm={(km) => {
-              // The map listens to this via a global; see below.
-              (window as any).__EZLUNCH_RADIUS_KM__ = km;
-            }}
-          />
-        </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <section className="rounded-2xl border bg-white p-6">
@@ -73,7 +60,7 @@ export default function MapPage() {
                   Missing geocodes ({missingKeys.length})
                 </div>
                 <div className="mt-2 text-xs text-amber-900/80">
-                  These restaurants will show as approximate city pins until we add lat/lng.
+                  These restaurants show as approximate city pins until we add lat/lng.
                 </div>
               </div>
             ) : null}
@@ -82,11 +69,10 @@ export default function MapPage() {
           <section className="rounded-2xl border bg-white p-6">
             <h2 className="text-lg font-semibold">Map</h2>
             <div className="mt-4 overflow-hidden rounded-xl border">
-              {/* We pass radius via a tiny client bridge (MapClient reads window value). */}
               <MapClient radiusKm={2} />
             </div>
             <p className="mt-3 text-xs text-zinc-500">
-              Next: compute real delivery zones from route planning.
+              Next: make radius configurable and compute real delivery zones from route planning.
             </p>
           </section>
         </div>
