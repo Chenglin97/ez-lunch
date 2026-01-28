@@ -57,7 +57,7 @@ export function LeafletMap() {
 
     // Fit bounds to markers if present
     if (markers.length) {
-      const bounds = L.latLngBounds(markers as any);
+      const bounds = L.latLngBounds(markers as L.LatLngExpression[]);
       map.fitBounds(bounds.pad(0.15));
     }
 
