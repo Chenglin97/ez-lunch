@@ -1,17 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card, FieldLabel, HelpText, TextArea, TextInput, ToggleRow } from "./components";
+import type { DietFlags, PreferencesDraft } from "./types";
+import { clearPreferencesLocal, loadPreferencesLocal, savePreferencesLocal } from "./save";
 
-type DietFlags = {
-  vegetarian: boolean;
-  vegan: boolean;
-  pescatarian: boolean;
-  glutenFree: boolean;
-  dairyFree: boolean;
-  nutFree: boolean;
-};
 
 type PreferencesDraft = {
   diet: DietFlags;
@@ -31,7 +25,7 @@ function toList(s: string) {
 }
 
 export default function PreferencesPage() {
-  const [draft, setDraft] = useState<PreferencesDraft>({
+  const defaultDraft: PreferencesDraft = {
     diet: {
       vegetarian: false,
       vegan: false,
@@ -46,7 +40,11 @@ export default function PreferencesPage() {
     allergies: "",
     maxPrice: "",
     radiusMiles: "",
-  });
+  };
+
+  const [draft, setDraft] = useState<PreferencesDraft>(defaultDraft);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const preview = useMemo(() => {
     return {
@@ -61,6 +59,11 @@ export default function PreferencesPage() {
       radiusMiles: draft.radiusMiles ? Number(draft.radiusMiles) : null,
     };
   }, [draft]);
+
+  useEffect(() => {
+    const loaded = loadPreferencesLocal();
+    if (loaded) setDraft(loaded);
+  }, []);
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
