@@ -9,7 +9,7 @@
 ## Next (still mostly UI)
 - [x] Extract shared header/nav component used across pages.
 - [x] Add a simple settings/dashboard page (links to Preferences, Subscription, etc.).
-- [ ] Add Settings link/entry point on home page CTA section.
+- [x] Add Settings link/entry point on home page CTA section.
 
 ## Later (wiring)
 - [ ] Persist preferences to DB (Prisma model + API route + server action).
