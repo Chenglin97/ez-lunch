@@ -68,9 +68,7 @@ export default function SubscribePage() {
         </form>
 
         <div className="mt-8">
-          <a className="text-sm hover:underline" href="/">
-            ← Back
-          </a>
+          <Link className="text-sm hover:underline" href="/">← Back</Link>
         </div>
       </main>
     </div>
