@@ -18,6 +18,11 @@ export default function MenuPage() {
           {MENU.map((item) => (
             <div key={item.name} className="rounded-2xl border bg-white p-6">
               <div className="text-base font-semibold">{item.name}</div>
+              {item.restaurant ? (
+                <div className="mt-1 text-xs text-zinc-500">
+                  {item.restaurant}{item.city ? ` • ` : ""}
+                </div>
+              ) : null}
               <div className="mt-3 flex flex-wrap gap-2">
                 {item.tags.map((t) => (
                   <span
