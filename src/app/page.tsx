@@ -1,28 +1,9 @@
+import { SiteHeader } from "../components/SiteHeader";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
-      <header className="border-b bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <div className="text-xl font-semibold tracking-tight">ez lunch</div>
-          <nav className="flex items-center gap-4 text-sm">
-            <a className="hover:underline" href="/menu">
-              Menu
-            </a>
-            <a className="hover:underline" href="/how-it-works">
-              How it works
-            </a>
-            <a className="hover:underline" href="/preferences">
-              Preferences
-            </a>
-            <a
-              className="rounded-full bg-zinc-900 px-4 py-2 font-medium text-white hover:bg-zinc-800"
-              href="/subscribe"
-            >
-              Subscribe
-            </a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader activeHref="/" />
 
       <main className="mx-auto max-w-5xl px-6 py-14">
         <section className="grid gap-10 md:grid-cols-2 md:items-center">

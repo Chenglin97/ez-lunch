@@ -1,3 +1,4 @@
+import { SiteHeader } from "../../../components/SiteHeader";
 const MENU = [
   {
     name: "Teriyaki salmon + rice + broccoli",
@@ -26,22 +27,7 @@ import Link from "next/link";
 export default function MenuPage() {
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
-      <header className="border-b bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link className="text-xl font-semibold tracking-tight" href="/">ez lunch</Link>
-          <div className="flex items-center gap-3">
-            <a className="text-sm hover:underline" href="/how-it-works">
-              How it works
-            </a>
-            <a
-              className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
-              href="/subscribe"
-            >
-              Subscribe
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader activeHref="/menu" />
 
       <main className="mx-auto max-w-5xl px-6 py-12">
         <h1 className="text-3xl font-semibold tracking-tight">Sample menu</h1>
