@@ -9,6 +9,7 @@ const NAV: NavItem[] = [
   { href: "/preferences", label: "Preferences" },
   { href: "/confirm", label: "Confirm" },
   { href: "/delivery", label: "Delivery" },
+  { href: "/map", label: "Map" },
   { href: "/settings", label: "Settings" },
   { href: "/login", label: "Login" },
 ];
