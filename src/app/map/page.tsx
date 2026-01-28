@@ -23,9 +23,7 @@ export default function MapPage() {
           Restaurants & delivery area
         </h1>
         <p className="mt-2 text-sm text-zinc-600">
-          Leaflet pins + a placeholder delivery radius. ({BAY_AREA_RESTAURANTS.length}
-          {" "}
-          geocoded restaurants so far.)
+          Leaflet pins + a placeholder delivery radius. (Geocoded: {BAY_AREA_RESTAURANTS.length} / {restaurants.length})
         </p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
