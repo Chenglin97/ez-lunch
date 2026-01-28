@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteHeader } from "../../../components/SiteHeader";
+import { SiteHeader } from "../../components/SiteHeader";
 import { useEffect, useMemo, useState } from "react";
 import {
   Card,

@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteHeader } from "../../../components/SiteHeader";
+import { SiteHeader } from "../../components/SiteHeader";
 import Link from "next/link";
 export default function SubscribePage() {
   return (
