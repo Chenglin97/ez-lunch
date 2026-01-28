@@ -8,6 +8,7 @@ const NAV: NavItem[] = [
   { href: "/preferences", label: "Preferences" },
   { href: "/subscribe", label: "Subscribe" },
   { href: "/settings", label: "Settings" },
+  { href: "/login", label: "Login" },
 ];
 
 export function SiteHeader({

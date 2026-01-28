@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { db } from "../../../lib/db";
+import { getOrCreateCurrentUserId } from "../../../lib/currentUser";
 
 function toList(s: unknown): string[] {
   if (Array.isArray(s)) {
@@ -13,19 +14,8 @@ function toList(s: unknown): string[] {
     .filter(Boolean);
 }
 
-async function getDemoUserId() {
-  const email = "demo@ezlunch.local";
-  const user = await db.user.upsert({
-    where: { email },
-    create: { email, name: "Demo User" },
-    update: {},
-    select: { id: true },
-  });
-  return user.id;
-}
-
 export async function GET() {
-  const userId = await getDemoUserId();
+  const userId = await getOrCreateCurrentUserId();
   const preferences = await db.userPreferences.findUnique({
     where: { userId },
   });
@@ -33,7 +23,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const userId = await getDemoUserId();
+  const userId = await getOrCreateCurrentUserId();
   const body = await req.json();
 
   const diet = body?.diet ?? {};
