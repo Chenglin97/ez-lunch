@@ -1,13 +1,7 @@
-import dynamic from "next/dynamic";
-
 import { SiteHeader } from "../../components/SiteHeader";
 import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { BAY_AREA_RESTAURANTS } from "../../data/bayAreaRestaurants";
-
-const LeafletMap = dynamic(
-  () => import("./LeafletMap").then((m) => m.LeafletMap),
-  { ssr: false }
-);
+import { MapClient } from "./MapClient";
 
 function uniqSorted(xs: string[]) {
   return Array.from(new Set(xs)).sort((a, b) => a.localeCompare(b));
@@ -55,7 +49,7 @@ export default function MapPage() {
           <section className="rounded-2xl border bg-white p-6">
             <h2 className="text-lg font-semibold">Map</h2>
             <div className="mt-4 overflow-hidden rounded-xl border">
-              <LeafletMap />
+              <MapClient />
             </div>
             <p className="mt-3 text-xs text-zinc-500">
               Next: geocode every restaurant and compute real delivery zones.
