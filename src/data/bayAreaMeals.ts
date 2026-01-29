@@ -264,4 +264,16 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice + green salad", cuisine: "Pizza" },
   { restaurant: "Homeroom", city: "Oakland", meal: "Mac & cheese flight (sampler)", cuisine: "American" },
 
+
+  { restaurant: "Ramen Nagi", city: "Palo Alto", meal: "Spicy ramen (extra spice)", cuisine: "Japanese" },
+  { restaurant: "Ramen Nagi", city: "Palo Alto", meal: "Extra noodles add-on", cuisine: "Japanese" },
+  { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Chicken salad", cuisine: "Salads" },
+  { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Tuna burger", cuisine: "Seafood" },
+  { restaurant: "Boudin", city: "San Francisco", meal: "Chicken noodle soup", cuisine: "Soup" },
+  { restaurant: "Boudin", city: "San Francisco", meal: "French dip sandwich", cuisine: "Sandwiches" },
+  { restaurant: "Mixt", city: "San Francisco", meal: "Cobb salad", cuisine: "Salads" },
+  { restaurant: "Mixt", city: "San Francisco", meal: "Caesar salad", cuisine: "Salads" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carnitas)", cuisine: "Mexican" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Burrito bowl", cuisine: "Mexican" },
+
 ];
