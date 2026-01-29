@@ -51,11 +51,18 @@ done
 
 # API health
 code=$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/api/tomorrow")
-echo "/api/tomorrow -> $code"
+echo "/api/tomorrow (GET) -> $code"
+[[ "$code" == "200" ]] || exit 1
+
+code=$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/api/tomorrow" \
+  -H 'content-type: application/json' \
+  -X POST \
+  --data '{"meal":"Test Meal"}')
+echo "/api/tomorrow (POST) -> $code"
 [[ "$code" == "200" ]] || exit 1
 
 code=$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/api/preferences")
-echo "/api/preferences -> $code"
+echo "/api/preferences (GET) -> $code"
 [[ "$code" == "200" ]] || exit 1
 
 echo "Smoke UI OK"
