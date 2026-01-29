@@ -156,4 +156,16 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Philz Coffee", city: "San Francisco", meal: "Oatmeal cup", cuisine: "Cafe" },
   { restaurant: "Philz Coffee", city: "San Francisco", meal: "Avocado toast", cuisine: "Cafe" },
 
+
+  { restaurant: "Burma Superstar", city: "San Francisco", meal: "Khao suey", cuisine: "Burmese" },
+  { restaurant: "Burma Superstar", city: "San Francisco", meal: "Nan gyi thoke", cuisine: "Burmese" },
+  { restaurant: "DishDash", city: "Sunnyvale", meal: "Baba ghanoush", cuisine: "Middle Eastern" },
+  { restaurant: "DishDash", city: "Sunnyvale", meal: "Hummus plate", cuisine: "Middle Eastern" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Samosa chaat", cuisine: "Indian-Pakistani" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Malai kofta bowl", cuisine: "Indian-Pakistani" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Saag paneer bowl", cuisine: "Indian" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Dal makhani bowl", cuisine: "Indian" },
+  { restaurant: "The Bird", city: "San Francisco", meal: "Fried chicken salad", cuisine: "American" },
+  { restaurant: "The Bird", city: "San Francisco", meal: "Chicken & waffles", cuisine: "American" },
+
 ];
