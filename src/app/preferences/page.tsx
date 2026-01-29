@@ -1,8 +1,9 @@
 "use client";
 
-import { SiteHeader } from "../../components/SiteHeader";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+
+import { SiteHeader } from "../../components/SiteHeader";
 import {
   Card,
   FieldLabel,
@@ -12,11 +13,7 @@ import {
   ToggleRow,
 } from "./components";
 import type { DietFlags, PreferencesDraft } from "./types";
-import {
-  clearPreferencesLocal,
-  loadPreferencesLocal,
-  savePreferencesLocal,
-} from "./save";
+import { clearPreferencesLocal, loadPreferencesLocal, savePreferencesLocal } from "./save";
 import { loadPreferencesApi, savePreferencesApi } from "./api";
 import { parseOptionalNumber } from "./validation";
 
@@ -53,6 +50,7 @@ export default function PreferencesPage() {
   const [draft, setDraft] = useState<PreferencesDraft>(() => {
     return loadPreferencesLocal() ?? defaultDraft;
   });
+
   const [saveState, setSaveState] = useState<
     "idle" | "saving" | "saved" | "error"
   >("idle");
@@ -68,7 +66,7 @@ export default function PreferencesPage() {
         if (cancelled) return;
         if (data?.preferences) {
           const p = data.preferences;
-          setDraft({
+          const next: PreferencesDraft = {
             diet: {
               vegetarian: !!p.vegetarian,
               vegan: !!p.vegan,
@@ -83,7 +81,9 @@ export default function PreferencesPage() {
             allergies: toTextList(p.allergies),
             maxPrice: p.maxPrice != null ? String(p.maxPrice) : "",
             radiusMiles: p.radiusMiles != null ? String(p.radiusMiles) : "",
-          });
+          };
+          setDraft(next);
+          savePreferencesLocal(next);
           setInfoMsg("Loaded from server");
           setTimeout(() => setInfoMsg(null), 1500);
         }
@@ -91,6 +91,7 @@ export default function PreferencesPage() {
         // ignore
       }
     })();
+
     return () => {
       cancelled = true;
     };
@@ -184,9 +185,7 @@ export default function PreferencesPage() {
             Next: confirm tomorrow →
           </Link>
 
-          {errorMsg ? (
-            <div className="text-sm text-red-600">{errorMsg}</div>
-          ) : null}
+          {errorMsg ? <div className="text-sm text-red-600">{errorMsg}</div> : null}
           {infoMsg ? <div className="text-sm text-zinc-600">{infoMsg}</div> : null}
         </div>
 
@@ -347,7 +346,8 @@ export default function PreferencesPage() {
 
           <Card title="Preview" className="md:col-span-2">
             <p className="text-sm text-zinc-600">
-              Preview of what will be saved. (We save to the server when available, and keep a local copy as a fallback.)
+              Preview of what will be saved. (We save to the server when available,
+              and keep a local copy as a fallback.)
             </p>
             <pre className="mt-4 overflow-auto rounded-xl bg-zinc-900 p-4 text-xs text-zinc-100">
               {JSON.stringify(preview, null, 2)}
