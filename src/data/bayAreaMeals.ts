@@ -132,4 +132,16 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Little Lucca", city: "South San Francisco", meal: "Roast beef Dutch crunch", cuisine: "Sandwiches" },
   { restaurant: "Little Lucca", city: "South San Francisco", meal: "Pastrami Dutch crunch", cuisine: "Sandwiches" },
 
+
+  { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Double cheeseburger", cuisine: "American" },
+  { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Veggie burger", cuisine: "American" },
+  { restaurant: "Din Tai Fung", city: "San Jose", meal: "Dan dan noodles", cuisine: "Chinese" },
+  { restaurant: "Din Tai Fung", city: "San Jose", meal: "String beans", cuisine: "Chinese" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Seekh kebab plate", cuisine: "Indian-Pakistani" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Lamb karahi bowl", cuisine: "Indian-Pakistani" },
+  { restaurant: "Ramen Nagi", city: "Palo Alto", meal: "Green King Ramen", cuisine: "Japanese" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Chicken katsu curry", cuisine: "Japanese" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Jalapeño popper mac", cuisine: "American" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Seasonal salad", cuisine: "Salads" },
+
 ];
