@@ -321,4 +321,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Kokkari Estiatorio", city: "San Francisco", meal: "Lamb gyro", cuisine: "Greek" },
   { restaurant: "Kokkari Estiatorio", city: "San Francisco", meal: "Chicken souvlaki plate", cuisine: "Greek" },
 
+  { restaurant: "Sotto Mare", city: "San Francisco", meal: "Cioppino", cuisine: "Seafood" },
+  { restaurant: "Sotto Mare", city: "San Francisco", meal: "Crab louie salad", cuisine: "Seafood" },
+  { restaurant: "R&G Lounge", city: "San Francisco", meal: "Salt & pepper crab", cuisine: "Chinese" },
+  { restaurant: "R&G Lounge", city: "San Francisco", meal: "Peking duck", cuisine: "Chinese" },
+  { restaurant: "House of Prime Rib", city: "San Francisco", meal: "Prime rib plate", cuisine: "American" },
+  { restaurant: "House of Prime Rib", city: "San Francisco", meal: "English cut prime rib", cuisine: "American" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Salad (seasonal)", cuisine: "Greek" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Fries (feta)", cuisine: "Greek" },
+  { restaurant: "Tartine Bakery", city: "San Francisco", meal: "Morning bun", cuisine: "Bakery" },
+  { restaurant: "Tartine Bakery", city: "San Francisco", meal: "Croissant (almond)", cuisine: "Bakery" },
+
 ];
