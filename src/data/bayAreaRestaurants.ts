@@ -41,4 +41,17 @@ export const BAY_AREA_RESTAURANTS: BayAreaRestaurant[] = [
   { restaurant: "Swan Oyster Depot", city: "San Francisco", lat: 37.789, lng: -122.434 },
   { restaurant: "The Counter", city: "Palo Alto", lat: 37.444, lng: -122.161 },
   { restaurant: "Arizmendi Bakery", city: "San Francisco", lat: 37.769, lng: -122.452 },
+
+  // New additions (approximate geocodes)
+  { restaurant: "Señor Sisig", city: "San Francisco", lat: 37.787, lng: -122.405 },
+  { restaurant: "Deli Board", city: "San Francisco", lat: 37.788, lng: -122.401 },
+  { restaurant: "RT Rotisserie", city: "San Francisco", lat: 37.774, lng: -122.437 },
+  { restaurant: "Nopa", city: "San Francisco", lat: 37.774, lng: -122.438 },
+  { restaurant: "Dosa", city: "San Francisco", lat: 37.779, lng: -122.419 },
+  { restaurant: "Rintaro", city: "San Francisco", lat: 37.761, lng: -122.421 },
+  { restaurant: "Smitten Ice Cream", city: "San Francisco", lat: 37.761, lng: -122.421 },
+  { restaurant: "Burmese Kitchen", city: "San Francisco", lat: 37.783, lng: -122.463 },
+  { restaurant: "Samovar Tea", city: "San Francisco", lat: 37.793, lng: -122.396 },
+  { restaurant: "Pizzeria Delfina", city: "San Francisco", lat: 37.761, lng: -122.424 },
+  { restaurant: "Sushi Ran", city: "Sausalito", lat: 37.859, lng: -122.485 },
 ];

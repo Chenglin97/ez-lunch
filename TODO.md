@@ -21,3 +21,4 @@
 
 ## Ongoing
 - [x] Task 13: Expand Bay Area meals dataset (+10 items)
+- [x] Map: add geocodes for newly added restaurants (so pins are exact, not city-center)
