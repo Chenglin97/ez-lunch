@@ -6,7 +6,7 @@ import L from "leaflet";
 
 import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { BAY_AREA_RESTAURANTS } from "../../data/bayAreaRestaurants";
-import { convexHull } from "./geometry";
+import { convexHull, polygonArea } from "./geometry";
 
 // Fix default marker icons when bundling
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
