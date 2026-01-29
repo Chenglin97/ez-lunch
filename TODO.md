@@ -14,7 +14,7 @@
 ## Later (wiring)
 - [x] Persist preferences to DB (Prisma model + API route).
 - [x] Load saved preferences from DB on page load (API client).
-- [ ] Add auth/user identity (even a demo "user" seed) so preferences are per-user.
+- [x] Add auth/user identity (even a demo "user" seed) so preferences are per-user.
 
 ## Fixes discovered
 - [x] Fix preferences page parse error introduced during refactor (6f693bf).
