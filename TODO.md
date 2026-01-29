@@ -18,3 +18,6 @@
 
 ## Fixes discovered
 - [x] Fix preferences page parse error introduced during refactor (6f693bf).
+
+## Ongoing
+- [x] Task 13: Expand Bay Area meals dataset (+10 items)

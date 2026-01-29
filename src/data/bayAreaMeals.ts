@@ -299,4 +299,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Dosa", city: "San Francisco", meal: "Masala dosa", cuisine: "Indian" },
   { restaurant: "Dosa", city: "San Francisco", meal: "Chicken tikka masala", cuisine: "Indian" },
 
+  { restaurant: "Sushi Ran", city: "Sausalito", meal: "Chirashi bowl", cuisine: "Japanese" },
+  { restaurant: "Sushi Ran", city: "Sausalito", meal: "Salmon avocado roll", cuisine: "Japanese" },
+  { restaurant: "Rintaro", city: "San Francisco", meal: "Yakitori assortment", cuisine: "Japanese" },
+  { restaurant: "Rintaro", city: "San Francisco", meal: "Chicken katsu sando", cuisine: "Japanese" },
+  { restaurant: "Smitten Ice Cream", city: "San Francisco", meal: "Ice cream pint", cuisine: "Dessert" },
+  { restaurant: "Burmese Kitchen", city: "San Francisco", meal: "Tea leaf salad", cuisine: "Burmese" },
+  { restaurant: "Burmese Kitchen", city: "San Francisco", meal: "Chicken coconut curry", cuisine: "Burmese" },
+  { restaurant: "Samovar Tea", city: "San Francisco", meal: "Avocado toast", cuisine: "Cafe" },
+  { restaurant: "Samovar Tea", city: "San Francisco", meal: "Chia pudding", cuisine: "Cafe" },
+  { restaurant: "Pizzeria Delfina", city: "San Francisco", meal: "Margherita pizza", cuisine: "Pizza" },
+
 ];
