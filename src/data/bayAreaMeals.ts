@@ -1098,4 +1098,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Top Dog", city: "Berkeley", meal: "Bratwurst", cuisine: "American" },
   { restaurant: "Top Dog", city: "Berkeley", meal: "Polish sausage", cuisine: "American" },
 
+  { restaurant: "Souvla", city: "San Francisco", meal: "Lamb gyro", cuisine: "Greek" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Spinach pie", cuisine: "Greek" },
+  { restaurant: "The Counter", city: "Palo Alto", meal: "Build-your-own burger", cuisine: "American" },
+  { restaurant: "The Counter", city: "Palo Alto", meal: "Turkey burger", cuisine: "American" },
+  { restaurant: "Curry Up Now", city: "San Francisco", meal: "Tikka masala burrito", cuisine: "Indian" },
+  { restaurant: "Curry Up Now", city: "San Francisco", meal: "Deconstructed samosa", cuisine: "Indian" },
+  { restaurant: "Tacos Oscar", city: "Oakland", meal: "Beet taco", cuisine: "Mexican" },
+  { restaurant: "Tacos Oscar", city: "Oakland", meal: "Sweet potato taco", cuisine: "Mexican" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Nashville hot sandwich", cuisine: "American" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Chicken tenders", cuisine: "American" },
+
 ];
