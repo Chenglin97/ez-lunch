@@ -1138,4 +1138,13 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Molinari Delicatessen", city: "San Francisco", meal: "Italian combo sandwich", cuisine: "Sandwiches" },
   { restaurant: "Molinari Delicatessen", city: "San Francisco", meal: "Meatball sandwich", cuisine: "Sandwiches" },
 
+  { restaurant: "Sushi Sam's", city: "San Mateo", meal: "Spicy tuna roll", cuisine: "Japanese" },
+  { restaurant: "Sushi Sam's", city: "San Mateo", meal: "California roll", cuisine: "Japanese" },
+  { restaurant: "Din Tai Fung", city: "Santa Clara", meal: "Cucumber salad", cuisine: "Taiwanese" },
+  { restaurant: "Din Tai Fung", city: "Santa Clara", meal: "Spicy wontons", cuisine: "Taiwanese" },
+  { restaurant: "Top Dog", city: "Berkeley", meal: "Top Dog hot dog", cuisine: "American" },
+  { restaurant: "Top Dog", city: "Berkeley", meal: "Veggie sausage", cuisine: "American" },
+  { restaurant: "Boba Guys", city: "San Francisco", meal: "Classic milk tea", cuisine: "Drinks" },
+  { restaurant: "Boba Guys", city: "San Francisco", meal: "Strawberry matcha latte", cuisine: "Drinks" },
+
 ];
