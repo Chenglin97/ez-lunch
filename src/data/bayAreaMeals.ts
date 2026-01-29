@@ -607,4 +607,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Rintaro", city: "San Francisco", meal: "Chicken katsu sando", cuisine: "Japanese" },
   { restaurant: "Rintaro", city: "San Francisco", meal: "Yakitori assortment", cuisine: "Japanese" },
 
+  { restaurant: "Papalote", city: "San Francisco", meal: "Nachos", cuisine: "Mexican" },
+  { restaurant: "Papalote", city: "San Francisco", meal: "Taco (carnitas)", cuisine: "Mexican" },
+  { restaurant: "Boudin", city: "San Francisco", meal: "Sourdough grilled cheese", cuisine: "Sandwiches" },
+  { restaurant: "Boudin", city: "San Francisco", meal: "Chicken noodle soup", cuisine: "Soup" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Chicken sandwich", cuisine: "American" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Cauliflower nuggets", cuisine: "American" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Israeli salad", cuisine: "Middle Eastern" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Shawarma bowl", cuisine: "Middle Eastern" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Seekh kebab plate", cuisine: "Indian-Pakistani" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Malai kofta bowl", cuisine: "Indian-Pakistani" },
+
 ];
