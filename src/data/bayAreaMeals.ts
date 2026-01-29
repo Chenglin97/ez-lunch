@@ -941,4 +941,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Sushi Sam's", city: "San Mateo", meal: "Chirashi bowl", cuisine: "Japanese" },
   { restaurant: "Sushi Sam's", city: "San Mateo", meal: "Spicy tuna roll", cuisine: "Japanese" },
 
+  { restaurant: "Din Tai Fung", city: "Santa Clara", meal: "Xiao long bao", cuisine: "Taiwanese" },
+  { restaurant: "Din Tai Fung", city: "Santa Clara", meal: "Fried rice", cuisine: "Taiwanese" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Beef udon", cuisine: "Japanese" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Chicken katsu curry", cuisine: "Japanese" },
+  { restaurant: "Daeho Kalbijjim & Beef Soup", city: "San Francisco", meal: "Kalbijjim (spicy)", cuisine: "Korean" },
+  { restaurant: "Daeho Kalbijjim & Beef Soup", city: "San Francisco", meal: "Kalbi tang", cuisine: "Korean" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Falafel plate", cuisine: "Middle Eastern" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Hummus with chicken", cuisine: "Middle Eastern" },
+  { restaurant: "Top Dog", city: "Berkeley", meal: "Bratwurst", cuisine: "American" },
+  { restaurant: "Top Dog", city: "Berkeley", meal: "Polish sausage", cuisine: "American" },
+
 ];
