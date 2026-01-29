@@ -552,4 +552,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "DishDash", city: "Sunnyvale", meal: "Hummus plate", cuisine: "Middle Eastern" },
   { restaurant: "DishDash", city: "Sunnyvale", meal: "Baba ghanoush", cuisine: "Middle Eastern" },
 
+  { restaurant: "Burmese Kitchen", city: "San Francisco", meal: "Tea leaf salad", cuisine: "Burmese" },
+  { restaurant: "Burmese Kitchen", city: "San Francisco", meal: "Chicken coconut curry", cuisine: "Burmese" },
+  { restaurant: "Señor Sisig", city: "San Francisco", meal: "Sisig burrito", cuisine: "Filipino-Mexican" },
+  { restaurant: "Señor Sisig", city: "San Francisco", meal: "Tofu sisig burrito", cuisine: "Filipino-Mexican" },
+  { restaurant: "Deli Board", city: "San Francisco", meal: "Roast beef sandwich", cuisine: "Sandwiches" },
+  { restaurant: "Deli Board", city: "San Francisco", meal: "Pastrami sandwich", cuisine: "Sandwiches" },
+  { restaurant: "RT Rotisserie", city: "San Francisco", meal: "Rotisserie chicken plate", cuisine: "American" },
+  { restaurant: "RT Rotisserie", city: "San Francisco", meal: "Chicken salad sandwich", cuisine: "Sandwiches" },
+  { restaurant: "Sotto Mare", city: "San Francisco", meal: "Cioppino", cuisine: "Seafood" },
+  { restaurant: "Hog Island Oyster Co", city: "San Francisco", meal: "Oyster platter", cuisine: "Seafood" },
+
 ];
