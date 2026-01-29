@@ -310,4 +310,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Samovar Tea", city: "San Francisco", meal: "Chia pudding", cuisine: "Cafe" },
   { restaurant: "Pizzeria Delfina", city: "San Francisco", meal: "Margherita pizza", cuisine: "Pizza" },
 
+  { restaurant: "The Pizza Place on Noriega", city: "San Francisco", meal: "Pepperoni slice", cuisine: "Pizza" },
+  { restaurant: "The Pizza Place on Noriega", city: "San Francisco", meal: "Veggie slice", cuisine: "Pizza" },
+  { restaurant: "Saru Sushi Bar", city: "San Francisco", meal: "Salmon nigiri set", cuisine: "Japanese" },
+  { restaurant: "Saru Sushi Bar", city: "San Francisco", meal: "Spicy tuna roll", cuisine: "Japanese" },
+  { restaurant: "Hook Fish Co", city: "San Francisco", meal: "Fish burrito", cuisine: "Seafood" },
+  { restaurant: "Hook Fish Co", city: "San Francisco", meal: "Poke bowl", cuisine: "Seafood" },
+  { restaurant: "Tony's Pizza Napoletana", city: "San Francisco", meal: "Margherita pizza", cuisine: "Pizza" },
+  { restaurant: "Tony's Pizza Napoletana", city: "San Francisco", meal: "Sicilian slice", cuisine: "Pizza" },
+  { restaurant: "Kokkari Estiatorio", city: "San Francisco", meal: "Lamb gyro", cuisine: "Greek" },
+  { restaurant: "Kokkari Estiatorio", city: "San Francisco", meal: "Chicken souvlaki plate", cuisine: "Greek" },
+
 ];
