@@ -191,7 +191,7 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
         </div>
         <div className="mt-1 text-[11px] text-zinc-600">Radius: {radiusKm} km</div>
       </div>
-      <div ref={ref} className="h-[360px] w-full" />
+      <div ref={ref} className="h-[480px] w-full" />
     </div>
   );
 }
