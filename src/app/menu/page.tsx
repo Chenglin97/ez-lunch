@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { SiteHeader } from "../../components/SiteHeader";
+import { BAY_AREA_MEALS } from "../../data/bayAreaMeals";
 import { MENU } from "../../lib/menu";
 
 export default function MenuPage() {
@@ -11,7 +12,9 @@ export default function MenuPage() {
       <main className="mx-auto max-w-5xl px-6 py-12">
         <h1 className="text-3xl font-semibold tracking-tight">Sample menu</h1>
         <p className="mt-2 text-sm text-zinc-600">
-          This is demo data. Tomorrow we can wire this to an admin tool.
+          This is demo data. We also have a growing Bay Area meals dataset ({" "}
+          <span className="font-medium">{BAY_AREA_MEALS.length}</span>
+          {" "}items) used by the map page.
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -20,7 +23,8 @@ export default function MenuPage() {
               <div className="text-base font-semibold">{item.name}</div>
               {item.restaurant ? (
                 <div className="mt-1 text-xs text-zinc-500">
-                  {item.restaurant}{item.city ? ` • ` : ""}
+                  {item.restaurant}
+                  {item.city ? ` • ${item.city}` : ""}
                 </div>
               ) : null}
               <div className="mt-3 flex flex-wrap gap-2">
@@ -38,7 +42,9 @@ export default function MenuPage() {
         </div>
 
         <div className="mt-10">
-          <Link className="text-sm hover:underline" href="/">← Back</Link>
+          <Link className="text-sm hover:underline" href="/">
+            ← Back
+          </Link>
         </div>
       </main>
     </div>
