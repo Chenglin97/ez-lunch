@@ -1169,4 +1169,13 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Tartine Bakery", city: "San Francisco", meal: "Country loaf sandwich", cuisine: "Bakery" },
   { restaurant: "Tartine Bakery", city: "San Francisco", meal: "Croissant", cuisine: "Bakery" },
 
+  { restaurant: "Boudin", city: "San Francisco", meal: "Clam chowder in sourdough", cuisine: "Seafood" },
+  { restaurant: "Boudin", city: "San Francisco", meal: "Crab roll", cuisine: "Seafood" },
+  { restaurant: "Swan Oyster Depot", city: "San Francisco", meal: "Oyster selection", cuisine: "Seafood" },
+  { restaurant: "Swan Oyster Depot", city: "San Francisco", meal: "Cioppino", cuisine: "Seafood" },
+  { restaurant: "Daeho Kalbijjim & Beef Soup", city: "San Francisco", meal: "Kalbijjim (spicy)", cuisine: "Korean" },
+  { restaurant: "Daeho Kalbijjim & Beef Soup", city: "San Francisco", meal: "Kalbi tang", cuisine: "Korean" },
+  { restaurant: "Arsicault Bakery", city: "San Francisco", meal: "Croissant", cuisine: "Bakery" },
+  { restaurant: "Arsicault Bakery", city: "San Francisco", meal: "Chocolate croissant", cuisine: "Bakery" },
+
 ];
