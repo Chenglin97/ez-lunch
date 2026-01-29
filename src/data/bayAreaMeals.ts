@@ -563,4 +563,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Sotto Mare", city: "San Francisco", meal: "Cioppino", cuisine: "Seafood" },
   { restaurant: "Hog Island Oyster Co", city: "San Francisco", meal: "Oyster platter", cuisine: "Seafood" },
 
+  { restaurant: "Pizzetta 211", city: "San Francisco", meal: "Pizza slice", cuisine: "Pizza" },
+  { restaurant: "Pizzetta 211", city: "San Francisco", meal: "Seasonal salad", cuisine: "Salads" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Chicken pita", cuisine: "Greek" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Lamb salad", cuisine: "Greek" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Chicken tikka roll", cuisine: "Indian-Pakistani" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Samosa chaat", cuisine: "Indian-Pakistani" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Paneer bowl", cuisine: "Indian" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Lamb curry bowl", cuisine: "Indian" },
+  { restaurant: "Little Lucca", city: "South San Francisco", meal: "Italian combo (Dutch crunch)", cuisine: "Sandwiches" },
+  { restaurant: "Little Lucca", city: "South San Francisco", meal: "Turkey avocado (Dutch crunch)", cuisine: "Sandwiches" },
+
 ];
