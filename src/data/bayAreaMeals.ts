@@ -629,4 +629,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "DishDash", city: "Sunnyvale", meal: "Chicken kebab plate", cuisine: "Middle Eastern" },
   { restaurant: "DishDash", city: "Sunnyvale", meal: "Lamb kebab plate", cuisine: "Middle Eastern" },
 
+  { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Double cheeseburger", cuisine: "American" },
+  { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Chicken schnitzel sandwich", cuisine: "American" },
+  { restaurant: "The Counter", city: "Palo Alto", meal: "Turkey burger", cuisine: "American" },
+  { restaurant: "The Counter", city: "Palo Alto", meal: "Sweet potato fries", cuisine: "American" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Falafel plate", cuisine: "Middle Eastern" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Chicken schnitzel pita", cuisine: "Middle Eastern" },
+  { restaurant: "Ramen Nagi", city: "Palo Alto", meal: "Gyoza", cuisine: "Japanese" },
+  { restaurant: "Ramen Nagi", city: "Palo Alto", meal: "Karaage", cuisine: "Japanese" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Palak paneer bowl", cuisine: "Indian-Pakistani" },
+  { restaurant: "Zareen's", city: "Palo Alto", meal: "Lamb karahi bowl", cuisine: "Indian-Pakistani" },
+
 ];
