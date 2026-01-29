@@ -1189,4 +1189,13 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "The Bird", city: "San Francisco", meal: "Fried chicken sandwich", cuisine: "American" },
   { restaurant: "The Bird", city: "San Francisco", meal: "Chicken tenders", cuisine: "American" },
 
+  { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Super burger", cuisine: "American" },
+  { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Chicken sandwich", cuisine: "American" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carnitas)", cuisine: "Mexican" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Taco (carne asada)", cuisine: "Mexican" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice (daily)", cuisine: "Pizza" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice + salad", cuisine: "Pizza" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Classic mac & cheese", cuisine: "American" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Pesto mac", cuisine: "American" },
+
 ];
