@@ -409,4 +409,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Super burger", cuisine: "American" },
   { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Garlic fries", cuisine: "American" },
 
+  { restaurant: "Souvla", city: "San Francisco", meal: "Lamb pita", cuisine: "Greek" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Pork belly pita", cuisine: "Greek" },
+  { restaurant: "The Counter", city: "Palo Alto", meal: "Build-your-own burger", cuisine: "American" },
+  { restaurant: "The Counter", city: "Palo Alto", meal: "Impossible burger", cuisine: "American" },
+  { restaurant: "Philz Coffee", city: "San Francisco", meal: "Iced mint mojito coffee", cuisine: "Cafe" },
+  { restaurant: "Philz Coffee", city: "San Francisco", meal: "Oatmeal", cuisine: "Cafe" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Niku udon", cuisine: "Japanese" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Chicken katsu curry", cuisine: "Japanese" },
+  { restaurant: "Mixt", city: "San Francisco", meal: "Cobb salad", cuisine: "Salads" },
+  { restaurant: "Mixt", city: "San Francisco", meal: "Salmon salad", cuisine: "Salads" },
+
 ];
