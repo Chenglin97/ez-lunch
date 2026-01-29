@@ -662,4 +662,13 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carnitas)", cuisine: "Mexican" },
   { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Veggie burger", cuisine: "American" },
 
+  { restaurant: "Philz Coffee", city: "San Francisco", meal: "Breakfast sandwich", cuisine: "Cafe" },
+  { restaurant: "Philz Coffee", city: "San Francisco", meal: "Oatmeal cup", cuisine: "Cafe" },
+  { restaurant: "Mixt", city: "San Francisco", meal: "Chicken cobb salad", cuisine: "Salads" },
+  { restaurant: "Mixt", city: "San Francisco", meal: "Salmon salad", cuisine: "Salads" },
+  { restaurant: "Daeho Kalbijjim & Beef Soup", city: "San Francisco", meal: "Ox bone soup", cuisine: "Korean" },
+  { restaurant: "Daeho Kalbijjim & Beef Soup", city: "San Francisco", meal: "Spicy short rib stew", cuisine: "Korean" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Curry udon", cuisine: "Japanese" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Tempura sampler", cuisine: "Japanese" },
+
 ];
