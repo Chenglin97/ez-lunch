@@ -574,4 +574,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Little Lucca", city: "South San Francisco", meal: "Italian combo (Dutch crunch)", cuisine: "Sandwiches" },
   { restaurant: "Little Lucca", city: "South San Francisco", meal: "Turkey avocado (Dutch crunch)", cuisine: "Sandwiches" },
 
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Daily pizza slice", cuisine: "Pizza" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Seasonal salad", cuisine: "Salads" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Mac & cheese with bacon", cuisine: "American" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Jalapeño popper mac", cuisine: "American" },
+  { restaurant: "Tacos Oscar", city: "Oakland", meal: "Carnitas taco", cuisine: "Mexican" },
+  { restaurant: "Tacos Oscar", city: "Oakland", meal: "Bean & cheese taco", cuisine: "Mexican" },
+  { restaurant: "Zuni Cafe", city: "San Francisco", meal: "Shoestring fries", cuisine: "American" },
+  { restaurant: "Zuni Cafe", city: "San Francisco", meal: "House-made burger", cuisine: "American" },
+  { restaurant: "Boba Guys", city: "San Francisco", meal: "Classic milk tea", cuisine: "Drinks" },
+  { restaurant: "Boba Guys", city: "San Francisco", meal: "Taro milk tea", cuisine: "Drinks" },
+
 ];
