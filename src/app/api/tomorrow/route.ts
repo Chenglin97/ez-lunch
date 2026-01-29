@@ -69,6 +69,21 @@ export async function GET() {
   const date = getTomorrowUtc();
   const weekStart = getWeekStartMondayUtc(date);
 
+  // No DB configured: fall back to a deterministic suggestion and no persistence.
+  if (!process.env.DATABASE_URL) {
+    const options = MENU.map((m) => m.name);
+    const suggestion = options[date.getUTCDay() % options.length];
+
+    return NextResponse.json({
+      date: date.toISOString(),
+      weekStart: weekStart.toISOString(),
+      options,
+      suggestion,
+      confirmed: null,
+      persisted: false,
+    });
+  }
+
   await ensureWeeklyPlan(userId, weekStart);
 
   const confirmed = await db.mealEvent.findFirst({
@@ -105,6 +120,15 @@ export async function GET() {
 export async function POST(req: Request) {
   const userId = await getOrCreateCurrentUserId();
   const body = await req.json().catch(() => null);
+
+  if (!process.env.DATABASE_URL) {
+    const meal = typeof body?.meal === "string" ? body.meal.trim() : "";
+    if (!meal) {
+      return NextResponse.json({ error: "meal is required" }, { status: 400 });
+    }
+
+    return NextResponse.json({ ok: true, mealEvent: { id: "demo", name: meal }, persisted: false });
+  }
 
   const meal = typeof body?.meal === "string" ? body.meal.trim() : "";
   if (!meal) {

@@ -16,6 +16,12 @@ function toList(s: unknown): string[] {
 
 export async function GET() {
   const userId = await getOrCreateCurrentUserId();
+
+  if (!process.env.DATABASE_URL) {
+    // No DB configured: return null preferences to let UI render defaults.
+    return NextResponse.json({ userId, preferences: null });
+  }
+
   const preferences = await db.userPreferences.findUnique({
     where: { userId },
   });
@@ -24,6 +30,13 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const userId = await getOrCreateCurrentUserId();
+
+  if (!process.env.DATABASE_URL) {
+    // No DB configured: accept the payload but don't persist.
+    const body = await req.json().catch(() => null);
+    return NextResponse.json({ userId, preferences: body ?? null, persisted: false });
+  }
+
   const body = await req.json();
 
   const diet = body?.diet ?? {};
