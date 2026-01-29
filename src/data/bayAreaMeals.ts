@@ -1025,4 +1025,13 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Zareen's", city: "Palo Alto", meal: "Chicken tikka roll", cuisine: "Indian-Pakistani" },
   { restaurant: "Zareen's", city: "Palo Alto", meal: "Samosa chaat", cuisine: "Indian-Pakistani" },
 
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Hummus with shawarma", cuisine: "Middle Eastern" },
+  { restaurant: "Oren's Hummus", city: "Palo Alto", meal: "Sabich pita", cuisine: "Middle Eastern" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Nashville hot sandwich", cuisine: "American" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Chicken tenders", cuisine: "American" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice (daily special)", cuisine: "Pizza" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Cheese bread", cuisine: "Bakery" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Classic mac & cheese", cuisine: "American" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Vegan mac", cuisine: "American" },
+
 ];
