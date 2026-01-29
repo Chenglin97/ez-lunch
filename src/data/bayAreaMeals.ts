@@ -276,4 +276,16 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carnitas)", cuisine: "Mexican" },
   { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Burrito bowl", cuisine: "Mexican" },
 
+
+  { restaurant: "Souvla", city: "San Francisco", meal: "Feta fries", cuisine: "Greek" },
+  { restaurant: "Souvla", city: "San Francisco", meal: "Side of tzatziki", cuisine: "Greek" },
+  { restaurant: "Sweetgreen", city: "San Francisco", meal: "Crispy rice bowl", cuisine: "Salads" },
+  { restaurant: "Sweetgreen", city: "San Francisco", meal: "Caesar salad", cuisine: "Salads" },
+  { restaurant: "Zuni Cafe", city: "San Francisco", meal: "Burger + fries", cuisine: "American" },
+  { restaurant: "Zuni Cafe", city: "San Francisco", meal: "Roast chicken salad", cuisine: "Californian" },
+  { restaurant: "DishDash", city: "Sunnyvale", meal: "Chicken shawarma bowl", cuisine: "Middle Eastern" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Tikka bowl", cuisine: "Indian" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice (mushroom)", cuisine: "Pizza" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Pulled chicken mac", cuisine: "American" },
+
 ];
