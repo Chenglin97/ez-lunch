@@ -1054,4 +1054,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Whole pizza (daily)", cuisine: "Pizza" },
   { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Seasonal salad", cuisine: "Salads" },
 
+  { restaurant: "Rasa", city: "Burlingame", meal: "Chicken tikka bowl", cuisine: "Indian" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Butter chicken bowl", cuisine: "Indian" },
+  { restaurant: "Little Lucca", city: "South San Francisco", meal: "Italian combo Dutch crunch", cuisine: "Sandwiches" },
+  { restaurant: "Little Lucca", city: "South San Francisco", meal: "Turkey Dutch crunch", cuisine: "Sandwiches" },
+  { restaurant: "Top Dog", city: "Berkeley", meal: "Top Dog hot dog", cuisine: "American" },
+  { restaurant: "Top Dog", city: "Berkeley", meal: "Veggie sausage", cuisine: "American" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Beef udon", cuisine: "Japanese" },
+  { restaurant: "Marugame Udon", city: "San Francisco", meal: "Chicken katsu curry", cuisine: "Japanese" },
+  { restaurant: "Din Tai Fung", city: "Santa Clara", meal: "Xiao long bao", cuisine: "Taiwanese" },
+  { restaurant: "Din Tai Fung", city: "Santa Clara", meal: "Spicy wontons", cuisine: "Taiwanese" },
+
 ];

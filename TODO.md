@@ -20,7 +20,6 @@
 - [x] Fix preferences page parse error introduced during refactor (6f693bf).
 
 ## Ongoing
-- [x] Task 13: Expand Bay Area meals dataset (+10 items)
+- [x] Task 13: Expand Bay Area meals dataset (+10 items per batch)
 - [x] Map: add geocodes for newly added restaurants (so pins are exact, not city-center)
 - [x] Add minimal tests for map geometry helpers (convex hull + area)
-- [x] Task 13: Expand Bay Area meals dataset (+10 items)
