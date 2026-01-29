@@ -228,4 +228,16 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Marugame Udon", city: "San Francisco", meal: "Teriyaki chicken bowl", cuisine: "Japanese" },
   { restaurant: "Marugame Udon", city: "San Francisco", meal: "Tempura sampler", cuisine: "Japanese" },
 
+
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Chicken sandwich", cuisine: "American" },
+  { restaurant: "Starbird", city: "Sunnyvale", meal: "Cauliflower nuggets", cuisine: "American" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Korma bowl", cuisine: "Indian" },
+  { restaurant: "Rasa", city: "Burlingame", meal: "Vindaloo bowl", cuisine: "Indian" },
+  { restaurant: "Little Lucca", city: "South San Francisco", meal: "Italian combo (extra hot peppers)", cuisine: "Sandwiches" },
+  { restaurant: "Little Lucca", city: "South San Francisco", meal: "Chicken pesto Dutch crunch", cuisine: "Sandwiches" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice + brownie", cuisine: "Pizza" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Vegan mac + side salad", cuisine: "American" },
+  { restaurant: "Tacos Oscar", city: "Oakland", meal: "Bean & cheese taco", cuisine: "Mexican" },
+  { restaurant: "Tacos Oscar", city: "Oakland", meal: "Chicken taco", cuisine: "Mexican" },
+
 ];
