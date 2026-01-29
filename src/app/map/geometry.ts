@@ -41,3 +41,15 @@ export function convexHull(points: Point[]): Point[] {
   lower.pop();
   return lower.concat(upper);
 }
+
+
+export function polygonArea(points: Point[]): number {
+  if (points.length < 3) return 0;
+  let a = 0;
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const q = points[(i + 1) % points.length];
+    a += p.x * q.y - q.x * p.y;
+  }
+  return Math.abs(a) / 2;
+}
