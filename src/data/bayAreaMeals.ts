@@ -1005,4 +1005,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Souvla", city: "San Francisco", meal: "Chicken gyro", cuisine: "Greek" },
   { restaurant: "Souvla", city: "San Francisco", meal: "Greek frozen yogurt", cuisine: "Dessert" },
 
+  { restaurant: "La Taqueria", city: "San Francisco", meal: "Carnitas burrito", cuisine: "Mexican" },
+  { restaurant: "La Taqueria", city: "San Francisco", meal: "Carne asada burrito", cuisine: "Mexican" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carnitas)", cuisine: "Mexican" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carne asada)", cuisine: "Mexican" },
+  { restaurant: "House of Prime Rib", city: "San Francisco", meal: "Prime rib", cuisine: "American" },
+  { restaurant: "House of Prime Rib", city: "San Francisco", meal: "Mashed potatoes", cuisine: "American" },
+  { restaurant: "Zuni Cafe", city: "San Francisco", meal: "Roast chicken + bread salad", cuisine: "American" },
+  { restaurant: "Zuni Cafe", city: "San Francisco", meal: "Polenta", cuisine: "American" },
+  { restaurant: "Burma Superstar", city: "San Francisco", meal: "Tea leaf salad", cuisine: "Burmese" },
+  { restaurant: "Burma Superstar", city: "San Francisco", meal: "Nan gyi thoke", cuisine: "Burmese" },
+
 ];
