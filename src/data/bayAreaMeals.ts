@@ -442,4 +442,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Hog Island Oyster Co", city: "San Francisco", meal: "Clam chowder", cuisine: "Seafood" },
   { restaurant: "Hog Island Oyster Co", city: "San Francisco", meal: "Grilled cheese", cuisine: "Seafood" },
 
+  { restaurant: "Kokkari Estiatorio", city: "San Francisco", meal: "Moussaka", cuisine: "Greek" },
+  { restaurant: "Kokkari Estiatorio", city: "San Francisco", meal: "Avgolemono soup", cuisine: "Greek" },
+  { restaurant: "Sotto Mare", city: "San Francisco", meal: "Crab sandwich", cuisine: "Seafood" },
+  { restaurant: "Sotto Mare", city: "San Francisco", meal: "Oyster plate", cuisine: "Seafood" },
+  { restaurant: "Swan Oyster Depot", city: "San Francisco", meal: "Seafood salad", cuisine: "Seafood" },
+  { restaurant: "Swan Oyster Depot", city: "San Francisco", meal: "Lobster roll", cuisine: "Seafood" },
+  { restaurant: "Papalote", city: "San Francisco", meal: "Taco (carnitas)", cuisine: "Mexican" },
+  { restaurant: "Papalote", city: "San Francisco", meal: "Nachos", cuisine: "Mexican" },
+  { restaurant: "Arsicault Bakery", city: "San Francisco", meal: "Morning bun", cuisine: "Bakery" },
+  { restaurant: "Arsicault Bakery", city: "San Francisco", meal: "Kouign-amann", cuisine: "Bakery" },
+
 ];
