@@ -497,4 +497,15 @@ export const BAY_AREA_MEALS: BayAreaMeal[] = [
   { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Veggie burger", cuisine: "American" },
   { restaurant: "Gott's Roadside", city: "Palo Alto", meal: "Truffle fries", cuisine: "American" },
 
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carne asada)", cuisine: "Mexican" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Super burrito (carnitas)", cuisine: "Mexican" },
+  { restaurant: "Taqueria El Farolito", city: "San Francisco", meal: "Taco (carne asada)", cuisine: "Mexican" },
+  { restaurant: "La Taqueria", city: "San Francisco", meal: "Carnitas plate", cuisine: "Mexican" },
+  { restaurant: "La Taqueria", city: "San Francisco", meal: "Carne asada plate", cuisine: "Mexican" },
+  { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Chicken sandwich", cuisine: "American" },
+  { restaurant: "Super Duper Burgers", city: "San Francisco", meal: "Impossible burger", cuisine: "American" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Buffalo chicken mac", cuisine: "American" },
+  { restaurant: "Homeroom", city: "Oakland", meal: "Truffle mac", cuisine: "American" },
+  { restaurant: "Cheeseboard Pizza", city: "Berkeley", meal: "Pizza slice + green salad", cuisine: "Pizza" },
+
 ];
