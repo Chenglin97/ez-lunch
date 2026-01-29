@@ -123,6 +123,7 @@ export function LeafletMap({ radiusKm = 2 }: { radiusKm?: number }) {
     for (const [city, pts] of geocodedByCity.entries()) {
       if (pts.length < 3) continue;
       const hull = convexHull(pts.map((p) => ({ x: p.lng, y: p.lat })));
+      if (polygonArea(hull) < 1e-6) continue;
       const latlngs = hull.map((p) => [p.y, p.x] as [number, number]);
       const poly = L.polygon(latlngs, {
         color: "#10b981",
