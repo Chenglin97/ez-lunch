@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 
-import { convexHull, polygonArea } from "./geometry.ts";
+import { convexHull, polygonArea } from "./geometry";
 
 function round(n: number, digits = 6) {
   const p = 10 ** digits;
