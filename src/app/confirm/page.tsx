@@ -32,6 +32,10 @@ export default function ConfirmPage() {
 
   useEffect(() => {
     let cancelled = false;
+
+    // Support deep-linking from /menu details modal.
+    const mealParam = new URLSearchParams(window.location.search).get("meal");
+
     (async () => {
       try {
         const res = await fetch("/api/tomorrow", { cache: "no-store" });
@@ -39,7 +43,7 @@ export default function ConfirmPage() {
         const data = (await res.json()) as TomorrowResponse;
         if (cancelled) return;
         setState({ kind: "ready", data });
-        setChoice(data.confirmed?.meal ?? data.suggestion);
+        setChoice(mealParam ?? data.confirmed?.meal ?? data.suggestion);
       } catch (err) {
         if (cancelled) return;
         setState({
@@ -48,6 +52,7 @@ export default function ConfirmPage() {
         });
       }
     })();
+
     return () => {
       cancelled = true;
     };
