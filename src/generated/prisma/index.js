@@ -219,7 +219,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/data/clawd/ez-lunch/src/generated/prisma",
+      "value": "/home/ubuntu/clawd/ez-lunch/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -233,7 +233,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/data/clawd/ez-lunch/prisma/schema.prisma",
+    "sourceFilePath": "/home/ubuntu/clawd/ez-lunch/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -247,7 +247,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
