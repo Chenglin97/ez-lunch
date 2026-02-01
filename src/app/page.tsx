@@ -1,4 +1,37 @@
+import Link from "next/link";
+
 import { SiteHeader } from "../components/SiteHeader";
+
+const SAMPLE_LINEUP = [
+  "Teriyaki salmon + rice + broccoli",
+  "Chicken shawarma bowl (GF option)",
+  "Tofu bibimbap + kimchi",
+  "Turkey chili + cornbread",
+  "Pesto pasta + roasted veggies",
+];
+
+function CardLink({
+  href,
+  title,
+  desc,
+}: {
+  href: string;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow"
+    >
+      <div className="text-sm font-semibold text-zinc-900 group-hover:underline">
+        {title}
+      </div>
+      <p className="mt-2 text-sm text-zinc-600">{desc}</p>
+      <div className="mt-4 text-xs font-medium text-zinc-500">Open →</div>
+    </Link>
+  );
+}
 
 export default function Home() {
   return (
@@ -15,36 +48,36 @@ export default function Home() {
               EZ Lunch — deliver delicious.
             </h1>
             <p className="text-lg text-zinc-600">
-              Subscribe to daily lunch delivery (lunch or dinner) cheaply and
-              conveniently.
+              Subscription lunch delivery with preferences → confirmation →
+              reliable dropoff.
             </p>
 
             <div className="rounded-2xl border bg-white p-5">
-              <div className="text-sm font-semibold">For only $300 / month</div>
+              <div className="text-sm font-semibold">$300 / month (demo)</div>
               <p className="mt-1 text-sm text-zinc-600">
-                Get your lunch delivered every day.
+                Pick defaults once, confirm tomorrow in seconds.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <a
+              <Link
                 className="rounded-full bg-zinc-900 px-5 py-3 font-medium text-white hover:bg-zinc-800"
                 href="/subscribe"
               >
                 Start subscription
-              </a>
-              <a
+              </Link>
+              <Link
                 className="rounded-full border border-zinc-300 bg-white px-5 py-3 font-medium hover:bg-zinc-100"
                 href="/confirm"
               >
                 Confirm tomorrow
-              </a>
-              <a
+              </Link>
+              <Link
                 className="rounded-full border border-zinc-300 bg-white px-5 py-3 font-medium hover:bg-zinc-100"
                 href="/menu"
               >
-                View sample menu
-              </a>
+                Browse meals
+              </Link>
             </div>
 
             <p className="text-sm text-zinc-500">
@@ -54,45 +87,79 @@ export default function Home() {
           </div>
 
           <div className="rounded-2xl border bg-white p-6 shadow-sm">
-            <div className="text-sm font-medium text-zinc-500">This week</div>
+            <div className="text-sm font-medium text-zinc-500">Try a meal</div>
             <div className="mt-2 text-2xl font-semibold">Sample lineup</div>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li className="rounded-xl border px-4 py-3">
-                Teriyaki salmon + rice + broccoli
-              </li>
-              <li className="rounded-xl border px-4 py-3">
-                Chicken shawarma bowl (GF option)
-              </li>
-              <li className="rounded-xl border px-4 py-3">
-                Tofu bibimbap + kimchi
-              </li>
-              <li className="rounded-xl border px-4 py-3">
-                Turkey chili + cornbread
-              </li>
-              <li className="rounded-xl border px-4 py-3">
-                Pesto pasta + roasted veggies
-              </li>
-            </ul>
-            <div className="mt-6 flex gap-3">
-              <a
+            <p className="mt-2 text-sm text-zinc-600">
+              Click a card to jump into tomorrow’s confirmation flow.
+            </p>
+
+            <div className="mt-4 grid gap-3 text-sm">
+              {SAMPLE_LINEUP.map((m) => (
+                <Link
+                  key={m}
+                  href={`/confirm?meal=${encodeURIComponent(m)}`}
+                  className="rounded-xl border bg-white px-4 py-3 transition hover:bg-zinc-50 hover:shadow-sm"
+                >
+                  <div className="font-medium">{m}</div>
+                  <div className="mt-1 text-xs text-zinc-500">
+                    Tap to preselect →
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <Link
                 className="w-full rounded-xl bg-zinc-900 px-4 py-3 text-center text-sm font-medium text-white hover:bg-zinc-800"
                 href="/subscribe"
               >
                 Subscribe
-              </a>
-              <a
+              </Link>
+              <Link
                 className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-center text-sm font-medium hover:bg-zinc-100"
                 href="/preferences"
               >
-                Preferences
-              </a>
+                Set preferences
+              </Link>
             </div>
           </div>
         </section>
 
         <section className="mt-14">
           <h2 className="text-xl font-semibold tracking-tight">
-            Problem → Solution
+            Start here (end-to-end)
+          </h2>
+          <p className="mt-2 text-sm text-zinc-600">
+            Four steps. Each card is clickable.
+          </p>
+
+          <div className="mt-6 grid gap-6 md:grid-cols-4">
+            <CardLink
+              href="/subscribe"
+              title="1) Subscribe"
+              desc="Demo signup (no payment) → continue."
+            />
+            <CardLink
+              href="/preferences"
+              title="2) Preferences"
+              desc="Diet, cuisines, allergies, budget."
+            />
+            <CardLink
+              href="/confirm"
+              title="3) Confirm"
+              desc="Pick tomorrow’s meal and lock it in."
+            />
+            <CardLink
+              href="/delivery"
+              title="4) Delivery"
+              desc="See status + go back to change tomorrow."
+            />
+          </div>
+        </section>
+
+        <section className="mt-14">
+          <h2 className="text-xl font-semibold tracking-tight">
+            Why it’s better than ad-hoc delivery
           </h2>
           <p className="mt-2 text-sm text-zinc-600">
             Traditional delivery is expensive and inefficient. EZ Lunch uses a
@@ -100,68 +167,21 @@ export default function Home() {
           </p>
 
           <div className="mt-6 grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border bg-white p-6">
-              <div className="text-sm font-semibold">Value Proposition 1</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Cheap and convenient meals for customers.
-              </p>
-            </div>
-            <div className="rounded-2xl border bg-white p-6">
-              <div className="text-sm font-semibold">Value Proposition 2</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Restaurants receive more orders, increasing revenue and reducing
-                cost.
-              </p>
-            </div>
-            <div className="rounded-2xl border bg-white p-6">
-              <div className="text-sm font-semibold">Value Proposition 3</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Path planning to maximize delivery efficiency and reduce
-                uncertainty.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-14">
-          <h2 className="text-xl font-semibold tracking-tight">How it works</h2>
-          <div className="mt-6 grid gap-6 md:grid-cols-4">
-            <a
-              className="rounded-2xl border bg-white p-6 hover:bg-zinc-50"
+            <CardLink
               href="/subscribe"
-            >
-              <div className="text-sm font-semibold">Start a subscription</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Sign up for the monthly meal plan.
-              </p>
-            </a>
-            <a
-              className="rounded-2xl border bg-white p-6 hover:bg-zinc-50"
-              href="/preferences"
-            >
-              <div className="text-sm font-semibold">Customize preferences</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Set dietary restrictions and food preferences.
-              </p>
-            </a>
-            <a
-              className="rounded-2xl border bg-white p-6 hover:bg-zinc-50"
-              href="/confirm"
-            >
-              <div className="text-sm font-semibold">Confirm your meal</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Opt to change the meal for the next day.
-              </p>
-            </a>
-            <a
-              className="rounded-2xl border bg-white p-6 hover:bg-zinc-50"
-              href="/delivery"
-            >
-              <div className="text-sm font-semibold">Enjoy delivery</div>
-              <p className="mt-2 text-sm text-zinc-600">
-                Receive the food effortlessly and timely.
-              </p>
-            </a>
+              title="Customer value"
+              desc="Lower cost per meal with predictable service."
+            />
+            <CardLink
+              href="/how-it-works"
+              title="Restaurant value"
+              desc="Batch demand to reduce variability and waste."
+            />
+            <CardLink
+              href="/map"
+              title="Delivery efficiency"
+              desc="Plan routes and zones to cut driver miles."
+            />
           </div>
         </section>
       </main>
